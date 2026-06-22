@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. Theme Switching System
   const themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
-  const savedTheme = localStorage.getItem('theme') || 'dark'; // Dark theme default
+  const savedTheme = localStorage.getItem('theme') || 'light'; // Light theme default
   
   document.documentElement.setAttribute('data-theme', savedTheme);
   updateThemeIcons(savedTheme);
