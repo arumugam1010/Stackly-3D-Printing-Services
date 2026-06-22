@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Stackly 3D - Enterprise 3D Printing Services</title>
+  <meta name="description"
+    content="Access your Stackly 3D printing dashboard, view print history, submit models, or check manufacturing statistics.">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <style>
+    .demo-credentials-box {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed var(--border-color);
+    }
+
+    .demo-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .demo-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .demo-btn {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+    }
+
+    .demo-btn:hover {
+      background: rgba(238, 85, 54, 0.05);
+      border-color: var(--accent-primary);
+      color: var(--text-primary);
+    }
+
+    .demo-role {
+      font-weight: 600;
+      color: var(--accent-secondary);
+    }
+
+    [data-theme="light"] .demo-btn {
+      background: rgba(15, 23, 42, 0.02);
+    }
+  </style>
+</head>
+
+<body data-theme="dark">
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-logo">
+      <div class="preloader-ring"></div>
+      <div class="preloader-core"></div>
+    </div>
+    <p>STACKLY 3D</p>
+  </div>
+
+  <div class="auth-page">
+    <div class="glow-shape glow-1"></div>
+    <div class="glow-shape glow-2"></div>
+
+    <div class="auth-container animate-fade-in-up">
+   
+      <!-- Logo Branding -->
+      <a href="index.html" class="auth-logo">
+        <div class="brand-icon" data-icon="printer"></div>
+        <span>Stackly<span style="color: var(--accent-primary);">3D</span></span>
+      </a>
+
+      <!-- Login Glass Card -->
+      <div class="glass-card auth-card">
+           <!-- Back to Home -->
+      <a href="index.html" class="back-to-home">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back to Home</span>
+      </a>
+
+        <div class="auth-header">
+          <h1 class="auth-title">Welcome Back</h1>
+          <p class="auth-subtitle">New to Stackly? <a href="register.html">Create Account</a></p>
+        </div>
+
+        <form id="login-form">
+          <!-- Role Selection Cards -->
+          <div class="form-group">
+            <span class="form-label">Select Your Role</span>
+            <div class="role-selector-grid">
+
+              <div class="role-option-card selected" data-role="customer">
+                <div class="role-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <span class="role-option-title">Customer</span>
+              </div>
+
+              <div class="role-option-card" data-role="designer">
+                <div class="role-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                </div>
+                <span class="role-option-title">Designer</span>
+              </div>
+
+              <div class="role-option-card" data-role="admin">
+                <div class="role-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                </div>
+                <span class="role-option-title">Admin</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" id="email" class="form-input" placeholder="alex@example.com" required
+              autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="password" class="form-input" placeholder="••••••••" required
+                autocomplete="current-password">
+              <button type="button" class="password-toggle-btn" aria-label="Toggle Password Visibility">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="auth-meta">
+            <label class="form-checkbox-label">
+              <input type="checkbox" id="remember" class="form-checkbox">
+              <span>Remember me</span>
+            </label>
+            <a href="404.html" class="forgot-password-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            LogIn
+          </button>
+        </form>
+
+        <!-- Quick Demo login access (UX Enhancer) -->
+        <div class="demo-credentials-box">
+          <div class="demo-title">Quick Demo Login</div>
+          <div class="demo-buttons">
+            <button class="demo-btn" data-email="customer@stackly3d.com">
+              <span>Customer Portal</span>
+              <span class="demo-role">Customer</span>
+            </button>
+            <button class="demo-btn" data-email="designer@stackly3d.com">
+              <span>Designer Workspace</span>
+              <span class="demo-role">3D Designer</span>
+            </button>
+            <button class="demo-btn" data-email="admin@stackly3d.com">
+              <span>Command Center</span>
+              <span class="demo-role">Administrator</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="fab-container">
+    <button class="theme-toggle-btn" aria-label="Toggle Dark/Light Theme"></button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/icons.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const emailInput = document.getElementById('email');
+      const pswdInput = document.getElementById('password');
+      const form = document.getElementById('login-form');
+      let selectedRole = 'customer';
+
+      // Role selection interactivity
+      const roleCards = document.querySelectorAll('.role-option-card');
+      roleCards.forEach(card => {
+        card.addEventListener('click', () => {
+          roleCards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          selectedRole = card.getAttribute('data-role');
+        });
+      });
+
+      // Password Toggle Interactivity
+      const toggleBtn = document.querySelector('.password-toggle-btn');
+      toggleBtn.addEventListener('click', () => {
+        const type = pswdInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        pswdInput.setAttribute('type', type);
+      });
+
+      // Quick Demo Autofills
+      const demoBtns = document.querySelectorAll('.demo-btn');
+      demoBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const email = btn.getAttribute('data-email');
+          emailInput.value = email;
+          pswdInput.value = "password";
+
+          // Auto select corresponding role card
+          let targetRole = 'customer';
+          if (email.includes('designer')) targetRole = 'designer';
+          else if (email.includes('admin')) targetRole = 'admin';
+
+          roleCards.forEach(c => {
+            if (c.getAttribute('data-role') === targetRole) {
+              c.classList.add('selected');
+            } else {
+              c.classList.remove('selected');
+            }
+          });
+          selectedRole = targetRole;
+
+          showNotification('Autofill Complete', 'Click "LogIn" to proceed', 'info');
+        });
+      });
+
+      // Submit handler
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = emailInput.value.trim();
+        const password = pswdInput.value.trim();
+
+        if (!email || !password) {
+          showNotification('Input Error', 'Please specify credentials', 'warning');
+          return;
+        }
+
+        const res = window.authSystem.loginUser(email, password, selectedRole);
+        if (res.success) {
+          showNotification('Success', res.message, 'success');
+          setTimeout(() => {
+            window.location.href = res.redirect;
+          }, 1000);
+        } else {
+          showNotification('Login Failure', res.message, 'danger');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

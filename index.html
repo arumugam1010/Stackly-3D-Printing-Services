@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly 3D | High-Precision On-Demand 3D Printing & Slicing</title>
+  <meta name="description" content="Get high-precision 3D printed parts on-demand. Upload STL/OBJ files for instant quotes. Support for FDM, SLA, SLS, and metal printing.">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    /* Home Page Specific Styling */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 2rem 60px 2rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-primary);
+      background-image: url('assets/images/hero_home_1.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(12, 16, 23, 0.75);
+      z-index: 1;
+    }
+
+    .hero-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero-content h1 {
+      font-family: var(--font-display);
+      font-size: 3.8rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .hero-content p {
+      font-size: 1.15rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2.5rem;
+      max-width: 580px;
+    }
+
+    /* Printo Feature Badges under Hero Title */
+    .hero-features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+    }
+
+    .hero-feature-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      color: #fff;
+    }
+
+    .hero-feature-icon {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-feature-svg {
+      width: 44px;
+      height: 44px;
+      stroke: #fff;
+      transition: stroke var(--transition-fast), transform var(--transition-normal);
+    }
+
+    .hero-feature-item:hover .hero-feature-svg {
+      stroke: var(--accent-primary);
+      transform: scale(1.08);
+    }
+
+    .hero-feature-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .hero-feature-desc {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Section Styling */
+    section {
+      padding: 7rem 2rem;
+      position: relative;
+      background: var(--bg-primary);
+    }
+
+    .section-bg-alt {
+      background: var(--bg-secondary);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4.5rem auto;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-primary);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    /* Two Column Info Section */
+    .info-split-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .info-split-content .section-subtitle {
+      text-align: left;
+    }
+
+    .info-split-content h2 {
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      color: var(--text-primary);
+    }
+
+    .info-split-content p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* Partners Logo Section */
+    .partners-section {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .partners-marquee {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    /* Gradient fade effect on sides */
+    .partners-marquee::before,
+    .partners-marquee::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 150px;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .partners-marquee::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg-secondary) 20%, transparent 100%);
+    }
+
+    .partners-marquee::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg-secondary) 20%, transparent 100%);
+    }
+
+    .partners-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 25s linear infinite;
+    }
+
+    /* Pause animation on hover */
+    .partners-track:hover {
+      animation-play-state: paused;
+    }
+
+    .partners-group {
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+      padding-right: 5rem;
+    }
+
+    .partner-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: color var(--transition-fast), transform var(--transition-fast);
+      cursor: pointer;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .partner-logo:hover {
+      color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+
+    .partner-logo svg {
+      width: 26px;
+      height: 26px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .partner-logo:hover svg {
+      transform: rotate(6deg) scale(1.05);
+    }
+
+    @keyframes marquee-scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Full-width Video Section */
+    .video-showcase-section {
+      height: 70vh;
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background-image: url('assets/images/hero_home_5.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .video-showcase-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(12, 16, 23, 0.7);
+      z-index: 1;
+    }
+
+    .video-showcase-content {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      color: #fff;
+    }
+
+    .video-play-btn {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      border: none;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 0 0 rgba(238, 85, 54, 0.4);
+      transition: all var(--transition-normal);
+      margin-bottom: 2rem;
+      animation: pulse-play 2s infinite;
+    }
+
+    .video-play-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: currentColor;
+      transform: translateX(3px);
+    }
+
+    @keyframes pulse-play {
+      0% { box-shadow: 0 0 0 0 rgba(238, 85, 54, 0.7); transform: scale(1); }
+      70% { box-shadow: 0 0 0 20px rgba(238, 85, 54, 0); transform: scale(1.05); }
+      100% { box-shadow: 0 0 0 0 rgba(238, 85, 54, 0); transform: scale(1); }
+    }
+
+    .video-play-btn:hover {
+      background: #ff7253;
+      transform: scale(1.1);
+    }
+
+    /* Stats Odometer Section */
+    .stats-section {
+      padding: 6rem 2rem;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .stats-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+      text-align: center;
+    }
+
+    .stats-num {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--accent-primary);
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+
+    .stats-lbl {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Transform CTA Callout block */
+    .callout-cta-section {
+      padding: 8rem 2rem;
+      background-image: linear-gradient(rgba(12, 16, 23, 0.85), rgba(12, 16, 23, 0.85)), url('assets/images/hero_contact.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .callout-cta-content h2 {
+      font-family: var(--font-display);
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.15;
+    }
+
+    .callout-cta-content p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Testimonials Slide Frame */
+    .testimonials-slider {
+      max-width: 850px;
+      margin: 0 auto;
+      position: relative;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .testi-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .testi-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .testi-quote {
+      font-size: 1.4rem;
+      line-height: 1.6;
+      color: var(--text-primary);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    .testi-user {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .testi-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--bg-tertiary);
+      border: 2px solid var(--accent-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+
+    .testi-details {
+      text-align: left;
+    }
+
+    .testi-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+    }
+
+    .testi-role {
+      font-size: 0.85rem;
+      color: var(--accent-secondary);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* Blog Card grid */
+    .blog-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .blog-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-fast);
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--glass-shadow-hover);
+      border-color: var(--accent-primary);
+    }
+
+    .blog-card-img-wrapper {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .blog-card-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-normal);
+    }
+
+    .blog-card:hover .blog-card-img-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .blog-card-badge {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      background: var(--accent-primary);
+      color: #fff;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-xs);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .blog-card-body {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .blog-card-date {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .blog-card-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .blog-card-title a:hover {
+      color: var(--accent-primary);
+    }
+
+    .blog-card-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .blog-card-link {
+      margin-top: auto;
+      font-weight: 700;
+      color: var(--accent-primary);
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .blog-card-link:hover {
+      color: #ff7253;
+    }
+
+    /* Video modal popup overlay */
+    .video-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(12, 16, 23, 0.95);
+      z-index: 2500;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .video-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .video-modal-container {
+      width: 90%;
+      max-width: 960px;
+      aspect-ratio: 16/9;
+      position: relative;
+    }
+
+    .video-modal-close {
+      position: absolute;
+      top: -3.5rem;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .video-modal-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    /* Let's talk layout bottom */
+    .talk-cta-section {
+      padding: 6rem 2rem;
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .talk-cta-title {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      color: var(--text-primary);
+    }
+
+    .talk-cta-accent {
+      color: var(--accent-primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .talk-cta-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: rgba(238, 85, 54, 0.15);
+      z-index: -1;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+      }
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-features-grid {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .info-split-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+      }
+      .blog-cards-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+    }
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.8rem;
+      }
+      .hero-features-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .blog-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .info-split-content h2, .section-title, .talk-cta-title {
+        font-size: 2.2rem;
+      }
+      .callout-cta-content h2 {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-logo">
+      <div class="preloader-ring"></div>
+      <div class="preloader-core"></div>
+    </div>
+    <p>STACKLY 3D</p>
+  </div>
+
+  <!-- Header Nav -->
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="brand">
+        <div class="brand-icon" data-icon="printer"></div>
+        <span>Stackly<span style="color: var(--accent-primary);">3D</span></span>
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle">Pages</a>
+          <div class="dropdown-menu">
+            <a href="about.html" class="dropdown-item">About Us</a>
+            <a href="services.html" class="dropdown-item">Our Services</a>
+            <a href="materials.html" class="dropdown-item">Materials</a>
+            <a href="pricing.html" class="dropdown-item">Pricing</a>
+            <a href="technologies.html" class="dropdown-item">Technologies</a>
+            <a href="industries.html" class="dropdown-item">Industries</a>
+            <a href="blog.html" class="dropdown-item">Blog</a>
+          </div>
+        </div>
+        <a href="gallery.html" class="nav-link">Portfolio</a>
+        <a href="pricing.html" class="nav-link">Shop</a>
+        <a href="contact.html" class="nav-link">Contacts</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-glass btn-sm"> LogIn</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-grid">
+      <div class="hero-content animate-fade-in-up">
+        <h1>Online 3D <br><span style="color: var(--accent-primary);">Printing Service</span></h1>
+        <p>High-precision custom rapid prototyping and low-volume production batching. Link designs to local fabrication pipelines within minutes.</p>
+        <div style="display: flex; gap: 1rem; justify-content: flex-start;">
+          <a href="404.html" class="btn btn-primary" id="btn-hero-learn-more">More information</a>
+        </div>
+        
+        <!-- Printo Feature Grid -->
+        <div class="hero-features-grid">
+          <div class="hero-feature-item">
+            <span class="hero-feature-icon">
+              <svg class="hero-feature-svg" viewBox="0 0 64 64" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 22h8M6 32h10M10 42h6" />
+                <circle cx="36" cy="36" r="18" />
+                <path d="M36 22v2M36 46v2M22 36h2M46 36h2" stroke-width="2" />
+                <path d="M36 26v10l8 6" />
+                <path d="M30 12h12M36 12v6" />
+              </svg>
+            </span>
+            <div class="hero-feature-title">Fast turnaround</div>
+            <div class="hero-feature-desc">Fabricated and prepared within 24 hours.</div>
+          </div>
+          <div class="hero-feature-item">
+            <span class="hero-feature-icon">
+              <svg class="hero-feature-svg" viewBox="0 0 64 64" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="8" y="12" width="48" height="40" rx="3" />
+                <path d="M16 22h16M16 30h12M16 38h16" />
+                <circle cx="44" cy="30" r="7" />
+                <path d="M41 30l2 2 3-3" stroke-width="2" />
+                <path d="M41 37l-2 7 5-3 5 3-2-7" />
+              </svg>
+            </span>
+            <div class="hero-feature-title">ISO 9001</div>
+            <div class="hero-feature-desc">Certified industrial process bounds.</div>
+          </div>
+          <div class="hero-feature-item">
+            <span class="hero-feature-icon">
+              <svg class="hero-feature-svg" viewBox="0 0 64 64" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="8" y="12" width="48" height="32" rx="3" />
+                <path d="M26 44h12M32 44v4" />
+                <path d="M32 20s6 2 6 6c0 6-6 10-6 10s-6-4-6-10c0-4 6-6 6-6z" />
+                <path d="M30 26l1.5 1.5 2.5-2.5" stroke-width="2" />
+                <path d="M14 20h4M14 26h2M14 32h5M46 20h4M48 26h2M45 32h5" stroke-width="2" />
+              </svg>
+            </span>
+            <div class="hero-feature-title">Secure file upload</div>
+            <div class="hero-feature-desc">Encrypted cloud geometric files storage.</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Interactive Three.js Extruder Animation Graphic -->
+      <div class="hero-visual">
+        <div class="interactive-3d-graphic" data-type="hero-printer" style="width: 100%; height: 480px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Carousel/Grid -->
+  <div class="partners-section">
+    <div class="partners-marquee">
+      <div class="partners-track">
+        <div class="partners-group">
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 22l10-4 10 4L12 2z"/></svg> Aerospace
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="8" rx="2"/><circle cx="9" cy="15" r="1"/><circle cx="15" cy="15" r="1"/><path d="M12 8v3M9 8h6M12 2v3M7 5l10 0"/></svg> Robotics
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> BioMed
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><path d="M2 17h2c0-1.7 1.3-3 3-3s3 1.3 3 3h4c0-1.7 1.3-3 3-3s3 1.3 3 3h2v-4s-1-4-5-4H9L5 13H2v4z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg> Automotive
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg> Healthcare
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Defense
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 6V3M15 6V3M9 21v-3M15 21v-3M6 9H3M6 15H3M21 9h-3M21 15h-3"/></svg> Electronics
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M4 6l8-4 8 4M6 10v7M10 10v7M14 10v7M18 10v7M5 21v-4h14v4"/></svg> Architecture
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M12 4v16M4 12h16"/><circle cx="12" cy="4" r="1.5"/><circle cx="12" cy="20" r="1.5"/><circle cx="4" cy="12" r="1.5"/><circle cx="20" cy="12" r="1.5"/><path d="M10 4.5h4M10 19.5h4M3.5 10v4M19.5 10v4"/></svg> DroneTech
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><path d="M4.5 16.5c1.5-2.5 3-5 5-5s3.5 2.5 5 5 3 2.5 5 0M4.5 7.5c1.5 2.5 3 5 5 5s3.5-2.5 5-5 3-2.5 5 0"/><path d="M8 10v4M12 9v6M16 10v4"/></svg> Biotech
+          </div>
+        </div>
+        <div class="partners-group" aria-hidden="true">
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 22l10-4 10 4L12 2z"/></svg> Aerospace
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="8" rx="2"/><circle cx="9" cy="15" r="1"/><circle cx="15" cy="15" r="1"/><path d="M12 8v3M9 8h6M12 2v3M7 5l10 0"/></svg> Robotics
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> BioMed
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><path d="M2 17h2c0-1.7 1.3-3 3-3s3 1.3 3 3h4c0-1.7 1.3-3 3-3s3 1.3 3 3h2v-4s-1-4-5-4H9L5 13H2v4z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg> Automotive
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg> Healthcare
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Defense
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 6V3M15 6V3M9 21v-3M15 21v-3M6 9H3M6 15H3M21 9h-3M21 15h-3"/></svg> Electronics
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M4 6l8-4 8 4M6 10v7M10 10v7M14 10v7M18 10v7M5 21v-4h14v4"/></svg> Architecture
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M12 4v16M4 12h16"/><circle cx="12" cy="4" r="1.5"/><circle cx="12" cy="20" r="1.5"/><circle cx="4" cy="12" r="1.5"/><circle cx="20" cy="12" r="1.5"/><path d="M10 4.5h4M10 19.5h4M3.5 10v4M19.5 10v4"/></svg> DroneTech
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 24 24"><path d="M4.5 16.5c1.5-2.5 3-5 5-5s3.5 2.5 5 5 3 2.5 5 0M4.5 7.5c1.5 2.5 3 5 5 5s3.5-2.5 5-5 3-2.5 5 0"/><path d="M8 10v4M12 9v6M16 10v4"/></svg> Biotech
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Our Benefits Split Section -->
+  <section>
+    <div class="info-split-grid">
+      <!-- Image Slideshow (Left Column) -->
+      <div>
+        <div class="benefits-slider-container">
+          <div class="benefits-slide active" style="background-image: url('assets/images/hero_home_2.webp');"></div>
+          <div class="benefits-slide" style="background-image: url('assets/images/hero_home_3.webp');"></div>
+          <div class="benefits-slide" style="background-image: url('assets/images/hero_home_4.webp');"></div>
+        </div>
+        <div class="benefits-slider-nav">
+          <button class="benefits-dot active" aria-label="Slide 1"></button>
+          <button class="benefits-dot" aria-label="Slide 2"></button>
+          <button class="benefits-dot" aria-label="Slide 3"></button>
+        </div>
+      </div>
+
+      <!-- Description Content (Right Column) -->
+      <div class="info-split-content">
+        <span class="section-subtitle">our benefits</span>
+        <h2>Order your 3D prints directly</h2>
+        <p>Upload geometric blueprints, verify dimensional tolerances instantly, select from engineering polymers or sintered metallic powders, and check visual layer slicer previews directly in-browser. We streamline custom manufacturing.</p>
+        <a href="404.html" class="btn btn-primary" id="btn-benefits-about">About Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Showcase Section -->
+  <section class="video-showcase-section">
+    <div class="video-showcase-content">
+      <a href="404.html" class="video-play-btn" aria-label="Play video">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </a>
+      <h2 style="font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">See Our Slicers & Printing Farm in Action</h2>
+    </div>
+  </section>
+
+  <!-- Process Workflow Tab System -->
+  <section class="section-bg-alt">
+    <div class="section-header">
+      <span class="section-subtitle">How it Works</span>
+      <h2 class="section-title">Streamlined Cloud Manufacturing</h2>
+    </div>
+
+    <div class="printo-tabs-container">
+      <!-- Tabs Selector Nav -->
+      <div class="printo-tabs-nav" role="tablist">
+        <button class="printo-tab-btn active" data-tab="1" role="tab" aria-selected="true" id="tab-opt-1">1. Upload your 3D file</button>
+        <button class="printo-tab-btn" data-tab="2" role="tab" aria-selected="false" id="tab-opt-2">2. Auto file review</button>
+        <button class="printo-tab-btn" data-tab="3" role="tab" aria-selected="false" id="tab-opt-3">3. Configure design</button>
+        <button class="printo-tab-btn" data-tab="4" role="tab" aria-selected="false" id="tab-opt-4">4. Instant quote</button>
+        <button class="printo-tab-btn" data-tab="5" role="tab" aria-selected="false" id="tab-opt-5">5. Support</button>
+      </div>
+
+      <!-- Tab Content Panels -->
+      <div class="printo-tabs-content">
+        <!-- Panel 1 -->
+        <div class="printo-tab-panel active" id="printo-tab-panel-1" role="tabpanel" aria-labelledby="tab-opt-1">
+          <div class="info-split-content">
+            <span class="section-subtitle">the first step</span>
+            <h3>1. Vector STL & OBJ file upload</h3>
+            <p>Securely submit CAD assets or mesh models to the client console. The server validates structural coordinate shells, normals orientation, and edge loops integrity dynamically.</p>
+            <a href="404.html" class="btn btn-primary">Upload Model</a>
+          </div>
+          <div class="glass-card" style="padding: 2.5rem; text-align: center;">
+            <h4>Model Slicing Preview</h4>
+            <p style="font-size: 0.9rem; margin-top: 1rem;">Upload FDM/SLA meshes for interactive layer estimation. 3D visual slicing limits checked immediately.</p>
+          </div>
+        </div>
+
+        <!-- Panel 2 -->
+        <div class="printo-tab-panel" id="printo-tab-panel-2" role="tabpanel" aria-labelledby="tab-opt-2">
+          <div class="info-split-content">
+            <span class="section-subtitle">identification</span>
+            <h3>2. Dynamic file review tool</h3>
+            <p>Our slicing engines evaluate boundary shells to highlight potential print bottlenecks, fragile thin walls, overlapping self-intersections, and structural voids before queue injection.</p>
+            <a href="404.html" class="btn btn-secondary">Learn Diagnostics</a>
+          </div>
+          <div class="glass-card" style="padding: 2.5rem; text-align: center;">
+            <h4>Automated Mesh Healing</h4>
+            <p style="font-size: 0.9rem; margin-top: 1rem;">Fix inverted triangles and shell overlaps in-browser during file processing.</p>
+          </div>
+        </div>
+
+        <!-- Panel 3 -->
+        <div class="printo-tab-panel" id="printo-tab-panel-3" role="tabpanel" aria-labelledby="tab-opt-3">
+          <div class="info-split-content">
+            <span class="section-subtitle">technical analysis</span>
+            <h3>3. Infill and material settings</h3>
+            <p>Customize structural infill percentage (grid, gyroid, cubic), layer thickness calibration (50μm - 300μm), and support configuration. Select from high-spec SLA resins or SLS sintering nylon powders.</p>
+            <a href="404.html" class="btn btn-primary">Materials Showcase</a>
+          </div>
+          <div class="glass-card" style="padding: 2.5rem; text-align: center;">
+            <h4>Calibration Tolerances</h4>
+            <p style="font-size: 0.9rem; margin-top: 1rem;">Review thermal shrink boundaries and tolerances for interlocking functional prototypes.</p>
+          </div>
+        </div>
+
+        <!-- Panel 4 -->
+        <div class="printo-tab-panel" id="printo-tab-panel-4" role="tabpanel" aria-labelledby="tab-opt-4">
+          <div class="info-split-content">
+            <span class="section-subtitle">instant calculator</span>
+            <h3>4. Immediate quotes</h3>
+            <p>Estimate fabrication parameters based on volume calculation, filament/resin weight density, SLA laser cycles duration, and material pricing matrices. Secure transparent checkouts.</p>
+            <a href="404.html" class="btn btn-primary">Cost Calculator</a>
+          </div>
+          <div class="glass-card" style="padding: 2.5rem; text-align: center;">
+            <h4>Transparent Pricing</h4>
+            <p style="font-size: 0.9rem; margin-top: 1rem;">Volume-discount metrics for low-volume industrial print runs. Save configs for recurring fabrication.</p>
+          </div>
+        </div>
+
+        <!-- Panel 5 -->
+        <div class="printo-tab-panel" id="printo-tab-panel-5" role="tabpanel" aria-labelledby="tab-opt-5">
+          <div class="info-split-content">
+            <span class="section-subtitle">the final step</span>
+            <h3>5. Custom engineering support</h3>
+            <p>Our certified design engineers double-check large CAD manifolds and aerospace sintering limits to optimize post-processing steps (sanding, tumbling, vapor smoothing, heat tempering).</p>
+            <a href="404.html" class="btn btn-primary">Consult Engineer</a>
+          </div>
+          <div class="glass-card" style="padding: 2.5rem; text-align: center;">
+            <h4>Certified Quality</h4>
+            <p style="font-size: 0.9rem; margin-top: 1rem;">Compliance audits and quality verification parameters for biological implants and spaceflight chassis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Counters -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div>
+        <div class="stats-counter stats-num" data-target="80" data-suffix="+">0</div>
+        <div class="stats-lbl">Expert engineers</div>
+      </div>
+      <div>
+        <div class="stats-counter stats-num" data-target="2548" data-suffix="">0</div>
+        <div class="stats-lbl">Fabricated parts</div>
+      </div>
+      <div>
+        <div class="stats-counter stats-num" data-target="25" data-suffix="+">0</div>
+        <div class="stats-lbl">Global partners</div>
+      </div>
+      <div>
+        <div class="stats-counter stats-num" data-target="256" data-suffix="">0</div>
+        <div class="stats-lbl">Active 3D printers</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Callout Banner -->
+  <section class="callout-cta-section">
+    <div class="callout-cta-content">
+      <span class="section-subtitle" style="color: var(--accent-primary);">printing services</span>
+      <h2>We transform 3D models into tangible objects</h2>
+      <p>High structural integrity parts manufactured exactly to engineering blueprints. Ready for shipment anywhere in the world.</p>
+      <a href="404.html" class="btn btn-primary" id="btn-callout-contact">Contact us</a>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section-bg-alt">
+    <div class="section-header">
+      <span class="section-subtitle">testimonials</span>
+      <h2 class="section-title">What our clients say</h2>
+    </div>
+
+    <div class="testimonials-slider">
+      <!-- Testi 1 -->
+      <div class="testi-slide active">
+        <p class="testi-quote">"The real-time mesh diagnostic checks saved us three prototyping cycles. The gyroid infill parts printed in Nylon PA12 are incredibly isotropic and sound."</p>
+        <div class="testi-user">
+          <div class="testi-avatar">👨‍🚀</div>
+          <div class="testi-details">
+            <div class="testi-name">Andrew Morris</div>
+            <div class="testi-role">Robotics Architect</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testi 2 -->
+      <div class="testi-slide">
+        <p class="testi-quote">"Excellent turnaround boundaries! Our surgical guides arrived sterile, checked for ISO 13485 metrics. Precision biocompatible resins printed to perfect tolerances."</p>
+        <div class="testi-user">
+          <div class="testi-avatar">👩‍⚕️</div>
+          <div class="testi-details">
+            <div class="testi-name">Dr. Helen Carter</div>
+            <div class="testi-role">Clinical Implant Specialist</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testi 3 -->
+      <div class="testi-slide">
+        <p class="testi-quote">"Extruded Grade 5 Titanium inlet manifold brackets tested for high heat limits. DMLS sintering densities were uniform, matching machined parts exactly."</p>
+        <div class="testi-user">
+          <div class="testi-avatar">🏎️</div>
+          <div class="testi-details">
+            <div class="testi-name">Mike Jones</div>
+            <div class="testi-role">Racing Engine Developer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="benefits-slider-nav" style="justify-content: center; margin-top: 2rem;">
+      <button class="testi-dot active" aria-label="Review 1" style="width: 10px; height: 10px; border-radius: 50%; background: var(--text-muted); cursor: pointer; border: none; padding: 0;"></button>
+      <button class="testi-dot" aria-label="Review 2" style="width: 10px; height: 10px; border-radius: 50%; background: var(--text-muted); cursor: pointer; border: none; padding: 0;"></button>
+      <button class="testi-dot" aria-label="Review 3" style="width: 10px; height: 10px; border-radius: 50%; background: var(--text-muted); cursor: pointer; border: none; padding: 0;"></button>
+    </div>
+  </section>
+
+  <!-- Featured Blog Section -->
+  <section>
+    <div class="section-header">
+      <span class="section-subtitle">our blog</span>
+      <h2 class="section-title">The featured articles</h2>
+    </div>
+
+    <div class="blog-cards-grid">
+      <!-- Article 1 -->
+      <div class="blog-card">
+        <div class="blog-card-img-wrapper">
+          <img src="assets/images/hero_blog.webp" alt="Spiral Staircase Model">
+          <span class="blog-card-badge">Insights</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">Apr 12, 2026</div>
+          <h3 class="blog-card-title"><a href="blog.html">Popular spiral-staircase 3D models</a></h3>
+          <p class="blog-card-desc">Reviewing structural architectural prints, overhang coordinates, and support structures configurations.</p>
+          <a href="404.html" class="blog-card-link">Read more &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Article 2 -->
+      <div class="blog-card">
+        <div class="blog-card-img-wrapper">
+          <img src="assets/images/hero_industries.webp" alt="Aerospace Manifold">
+          <span class="blog-card-badge">Industries</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">Apr 13, 2026</div>
+          <h3 class="blog-card-title"><a href="blog.html">Industries that were transformed by 3D</a></h3>
+          <p class="blog-card-desc">How aerospace components, custom implants, and low-volume production grids utilize additive technologies.</p>
+          <a href="404.html" class="blog-card-link">Read more &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Article 3 -->
+      <div class="blog-card">
+        <div class="blog-card-img-wrapper">
+          <img src="assets/images/hero_technologies.webp" alt="Sintering Operation">
+          <span class="blog-card-badge">Manufacturing</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">Apr 14, 2026</div>
+          <h3 class="blog-card-title"><a href="blog.html">Which country is number one in manufacturing?</a></h3>
+          <p class="blog-card-desc">Analyzing global manufacturing hubs and cloud-decentralized printing pools scaling patterns.</p>
+          <a href="404.html" class="blog-card-link">Read more &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Let's Talk CTA Section -->
+  <section class="talk-cta-section">
+    <div class="talk-cta-title">We develop digital future. <br><span class="talk-cta-accent">Let's Talk!</span></div>
+    <a href="404.html" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;" id="btn-footer-talk">Get in Touch</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <div class="brand-icon" data-icon="printer"></div>
+          <span>Stackly<span style="color: var(--accent-primary);">3D</span></span>
+        </a>
+        <p>Enterprise cloud additive manufacturing platform. Advanced STL mesh slicers, custom polymers, and sintered metal fabrication networks.</p>
+        <div class="footer-socials">
+          <a href="404.html" class="social-icon" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="materials.html">Materials</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="pricing.html">Cost Calculator</a></li>
+          <li><a href="technologies.html">Technologies</a></li>
+          <li><a href="industries.html">Industries Served</a></li>
+          <li><a href="gallery.html">Project Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="blog.html">Blog & Insights</a></li>
+          <li><a href="login.html">Log In</a></li>
+          <li><a href="register.html">Register Portal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Stackly 3D Printing Services. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Video Modal popup -->
+  <div class="video-modal-overlay" id="video-modal">
+    <div class="video-modal-container">
+      <button class="video-modal-close modal-close-btn">&times;</button>
+      <iframe data-src="https://www.youtube.com/embed/bcTzyx35odY?enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Floating action elements -->
+  <div class="fab-container">
+    <a href="contact.html" class="fab-btn" aria-label="Support Desk">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/icons.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/three-graphics.js" defer></script>
+</body>
+</html>

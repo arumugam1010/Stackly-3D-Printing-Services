@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Stackly 3D - 3D Printing & Slicing Solutions</title>
+  <meta name="description"
+    content="Explore our additive manufacturing services including rapid prototyping, reverse engineering, low-volume batching, and design validations.">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .services-hero {
+      padding: 140px 2rem 80px 2rem;
+      background: url('assets/images/hero_services.webp') no-repeat center center/cover;
+      text-align: center;
+      position: relative;
+    }
+
+    .services-hero h1 {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+
+    .services-hero p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .service-detail-section {
+      padding: 6rem 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .service-detail-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .service-detail-grid.reverse {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .service-visual-box {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      height: 350px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4rem;
+      box-shadow: var(--glass-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-visual-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-normal);
+    }
+
+    .service-visual-box:hover img {
+      transform: scale(1.05);
+    }
+
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .service-text {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .feature-check {
+      color: var(--accent-secondary);
+      width: 18px;
+      height: 18px;
+    }
+
+    @media (max-width: 900px) {
+
+      .service-detail-grid,
+      .service-detail-grid.reverse {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .service-detail-grid.reverse .service-visual-box {
+        order: -1;
+      }
+    }
+  </style>
+</head>
+
+<body data-theme="dark">
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-logo">
+      <div class="preloader-ring"></div>
+      <div class="preloader-core"></div>
+    </div>
+    <p>STACKLY 3D</p>
+  </div>
+
+  <!-- Header Nav -->
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="brand">
+        <div class="brand-icon" data-icon="printer"></div>
+        <span>Stackly<span
+            style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">3D</span></span>
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle">Pages</a>
+          <div class="dropdown-menu">
+            <a href="about.html" class="dropdown-item">About Us</a>
+            <a href="services.html" class="dropdown-item">Our Services</a>
+            <a href="materials.html" class="dropdown-item">Materials</a>
+            <a href="pricing.html" class="dropdown-item">Pricing</a>
+            <a href="technologies.html" class="dropdown-item">Technologies</a>
+            <a href="industries.html" class="dropdown-item">Industries</a>
+            <a href="blog.html" class="dropdown-item">Blog</a>
+          </div>
+        </div>
+        <a href="gallery.html" class="nav-link">Portfolio</a>
+        <a href="pricing.html" class="nav-link">Shop</a>
+        <a href="contact.html" class="nav-link">Contacts</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle Theme"></button>
+        <a href="login.html" class="btn btn-glass btn-sm">LogIn</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services Hero -->
+  <section class="services-hero">
+    <div class="glow-shape glow-1"></div>
+    <div class="glow-shape glow-2"></div>
+    <div class="animate-fade-in-up hero-glass-card">
+      <span class="section-subtitle">What We Offer</span>
+      <h1>Our Manufacturing Operations</h1>
+      <p>From one-off plastic assemblies to large-scale titanium structural arrays, we deliver precision industrial
+        tolerances and instant digital feedback loops.</p>
+    </div>
+  </section>
+
+  <!-- Service 1: Prototyping -->
+  <section class="service-detail-section" style="background: var(--bg-secondary);">
+    <div class="service-detail-grid">
+      <div class="service-content">
+        <h2 class="service-title">Rapid Prototyping</h2>
+        <p class="service-text">Accelerate design iterations and reduce time-to-market. Our rapid SLA/FDM prototyping
+          pipelines allow mechanical fittings and aerodynamic proofing to happen in real-time.</p>
+        <div class="feature-list">
+          <div class="feature-item">
+            <svg class="feature-check" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>24-Hour Production turnarounds</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-check" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Dimensional accuracy up to 100 microns</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-check" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Broad material support including tough polymers</span>
+          </div>
+        </div>
+        <a href="404.html" class="btn btn-primary">Submit Design Project</a>
+      </div>
+      <div class="service-visual-box">
+        <img src="assets/images/service_prototyping.png" alt="Rapid Prototyping">
+      </div>
+    </div>
+  </section>
+
+  <!-- Service 2: Low-Volume Batching -->
+  <section class="service-detail-section">
+    <div class="service-detail-grid reverse" style="grid-template-columns: 1fr 1fr;">
+      <div class="service-visual-box" style="grid-column: 1;">
+        <img src="assets/images/service_production.png" alt="On-Demand Production">
+      </div>
+      <div class="service-content" style="grid-column: 2;">
+        <h2 class="service-title">On-Demand Production</h2>
+        <p class="service-text">Skip expensive injection mold tooling configurations. Our SLS laser-sintering arrays
+          support mid-scale batch runs of up to 10,000 components with functional mechanical strength.</p>
+        <div class="feature-list">
+          <div class="feature-item">
+            <svg class="feature-check" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>No tooling setup cost or minimum volume</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-check" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Nylon (PA12) parts with isotropic properties</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-check" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Post-processing: tumbling, dyeing, and vapor smoothing</span>
+          </div>
+        </div>
+        <a href="404.html" class="btn btn-primary">Start Batch Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service 3: Reverse Engineering & CAD -->
+  <section class="service-detail-section" style="background: var(--bg-secondary);">
+    <div class="service-detail-grid">
+      <div class="service-content">
+        <h2 class="service-title">Reverse Engineering & Validation</h2>
+        <p class="service-text">Have a physical component but no digital file? Our engineers use structured-light
+          industrial blue lasers to scan existing housings, creating fully editable CAD files.</p>
+        <div class="feature-list">
+          <div class="feature-item">
+            <svg class="feature-check" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>High accuracy mesh extraction scans</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-check" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Thorough structural wall thickness diagnostics</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-check" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Generative design weight optimization workflows</span>
+          </div>
+        </div>
+        <a href="404.html" class="btn btn-secondary">Inquire About Scanning</a>
+      </div>
+      <div class="service-visual-box">
+        <img src="assets/images/service_scanning.png" alt="Reverse Engineering & Validation">
+      </div>
+    </div>
+  </section>
+
+  <!-- DFAM Guidelines Section (NEW) -->
+  <section
+    style="background: var(--bg-primary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="section-header">
+      <span class="section-subtitle">Design Rules</span>
+      <h2 class="section-title">Additive Design Constraints</h2>
+    </div>
+
+    <div
+      style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: var(--max-width); margin: 0 auto; gap: 2rem;">
+      <div class="glass-card">
+        <h3
+          style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--accent-secondary);">
+          Minimum Wall Thickness</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">To avoid warping or fracture,
+          observe our structural guidelines. SLA resin: 0.5mm. FDM polymers: 0.8mm. Metal DMLS: 1.0mm.</p>
+        <span
+          style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); text-transform: uppercase; background: rgba(6, 182, 212, 0.1); padding: 4px 8px; border-radius: 4px;">Wall
+          Limit: 0.5mm - 1.0mm</span>
+      </div>
+
+      <div class="glass-card">
+        <h3
+          style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--accent-secondary);">
+          Overhang Thresholds</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Self-supporting limits
+          require no scaffolding. Design features with angles over 45° relative to the build plate to print
+          support-free.</p>
+        <span
+          style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); text-transform: uppercase; background: rgba(6, 182, 212, 0.1); padding: 4px 8px; border-radius: 4px;">Scaffold-Free
+          Limit: 45°</span>
+      </div>
+
+      <div class="glass-card">
+        <h3
+          style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--accent-secondary);">
+          Interlocking Clearance</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">To ensure moving hinges,
+          joints, and gears slice cleanly and do not fuse, preserve a minimum gap tolerance of 0.3mm in CAD files.</p>
+        <span
+          style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); text-transform: uppercase; background: rgba(6, 182, 212, 0.1); padding: 4px 8px; border-radius: 4px;">Clearance
+          Limit: 0.3mm</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Post-Processing Surface Finishes Table (NEW) -->
+  <section style="background: var(--bg-secondary);">
+    <div class="section-header">
+      <span class="section-subtitle">Surface Optimization</span>
+      <h2 class="section-title">Post-Processing Options</h2>
+    </div>
+
+    <div class="table-responsive"
+      style="max-width: var(--max-width); margin: 0 auto; background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--glass-shadow);">
+      <table class="table-custom" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+        <thead>
+          <tr style="border-bottom: 1px solid var(--border-color); background: rgba(255, 255, 255, 0.02);">
+            <th style="padding: 1.25rem 1.5rem; font-weight: 700;">Finish Name</th>
+            <th style="padding: 1.25rem 1.5rem; font-weight: 700;">Description</th>
+            <th style="padding: 1.25rem 1.5rem; font-weight: 700;">Best For</th>
+            <th style="padding: 1.25rem 1.5rem; font-weight: 700;">Relative Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--border-color);">
+            <td style="padding: 1.25rem 1.5rem; font-weight: 600; color: var(--accent-secondary);">Raw / Standard Build
+            </td>
+            <td style="padding: 1.25rem 1.5rem; color: var(--text-secondary);">Minimal cleanup. Supports removed, minor
+              burrs sanded down. Visible layer lines.</td>
+            <td style="padding: 1.25rem 1.5rem;">Visual mockups, fit-checking prototypes</td>
+            <td style="padding: 1.25rem 1.5rem; font-weight: 600; color: var(--accent-success);">Included ($0)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-color);">
+            <td style="padding: 1.25rem 1.5rem; font-weight: 600; color: var(--accent-secondary);">Abrasive Tumbling
+            </td>
+            <td style="padding: 1.25rem 1.5rem; color: var(--text-secondary);">Parts are placed in a vibrating media
+              tumbler with ceramic or plastic beads for a matte, uniform finish.</td>
+            <td style="padding: 1.25rem 1.5rem;">SLS Nylon, metal gear deburring</td>
+            <td style="padding: 1.25rem 1.5rem; font-weight: 600; color: var(--text-primary);">Low ($)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-color);">
+            <td style="padding: 1.25rem 1.5rem; font-weight: 600; color: var(--accent-secondary);">Chemical Vapor
+              Smoothing</td>
+            <td style="padding: 1.25rem 1.5rem; color: var(--text-secondary);">Exposed to heated solvent vapor which
+              melts the outer skin slightly, curing into a glossy, sealed, waterproof surface.</td>
+            <td style="padding: 1.25rem 1.5rem;">Resin models, aesthetic housings, fluid containers</td>
+            <td style="padding: 1.25rem 1.5rem; font-weight: 600; color: var(--text-primary);">Medium ($$)</td>
+          </tr>
+          <tr>
+            <td style="padding: 1.25rem 1.5rem; font-weight: 600; color: var(--accent-secondary);">Anodizing &
+              Electro-Plating</td>
+            <td style="padding: 1.25rem 1.5rem; color: var(--text-secondary);">Chemical electrolyte treatment that
+              creates a durable, colored oxide wear layer on Titanium and Aluminum components.</td>
+            <td style="padding: 1.25rem 1.5rem;">Aerospace brackets, medical joint assemblies</td>
+            <td style="padding: 1.25rem 1.5rem; font-weight: 600; color: var(--text-primary);">Premium ($$$)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <div class="brand-icon" data-icon="printer"></div>
+          <span>Stackly<span
+              style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">3D</span></span>
+        </a>
+        <p>Enterprise cloud manufacturing platform. Custom SLA, FDM, SLS print operations globally.</p>
+        <div class="footer-socials">
+          <a href="404.html" class="social-icon" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path
+                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z" />
+            </svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="materials.html">Materials</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="pricing.html">Cost Calculator</a></li>
+          <li><a href="technologies.html">Technologies</a></li>
+          <li><a href="industries.html">Industries Served</a></li>
+          <li><a href="gallery.html">Project Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="blog.html">Blog & News</a></li>
+          <li><a href="login.html">Login Portal</a></li>
+          <li><a href="register.html">Register Account</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Stackly 3D Printing Services. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating action elements -->
+  <div class="fab-container">
+    <button class="theme-toggle-btn" aria-label="Toggle Theme"></button>
+    <a href="contact.html" class="fab-btn" aria-label="Support Desk">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/icons.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/three-graphics.js" defer></script>
+</body>
+
+</html>

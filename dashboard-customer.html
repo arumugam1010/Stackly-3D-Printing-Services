@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Workspace | Stackly 3D</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    /* Customer portal custom specs */
+    .file-spec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .spec-block {
+      background: var(--bg-tertiary);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+    }
+    .spec-title {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .spec-data {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <!-- Security Guard: Block access before rendering if not Customer role -->
+  <script src="js/auth.js"></script>
+  <script>
+    // Enforce Customer Guard
+    window.authSystem.checkDashboardAccess('customer');
+  </script>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-logo">
+      <div class="preloader-ring"></div>
+      <div class="preloader-core"></div>
+    </div>
+    <p>CUSTOMER PORTAL</p>
+  </div>
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar Navigation -->
+    <div class="dashboard-sidebar" id="dashboard-sidebar">
+      <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close Sidebar">&times;</button>
+      <div class="sidebar-logo">
+        <div class="brand-icon" data-icon="printer"></div>
+        <span>Stackly<span style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">3D</span></span>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <div class="sidebar-link active" data-target="upload-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          <span>Upload CAD</span>
+        </div>
+        <div class="sidebar-link" data-target="tracking-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>Track Orders</span>
+        </div>
+        <div class="sidebar-link" data-target="billing-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          <span>Billing & History</span>
+        </div>
+        <div class="sidebar-link" data-target="support-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Support Center</span>
+        </div>
+        <div class="sidebar-link" data-target="profile-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>Profile Settings</span>
+        </div>
+        <div class="sidebar-link" data-target="notifications-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span>Notifications</span>
+        </div>
+        <div class="sidebar-link" data-target="analytics-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          <span>Usage Analytics</span>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="sidebar-link" style="width: 100%; border: none;" onclick="window.authSystem.logoutUser()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          <span>Sign Out</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Workspace Content Column -->
+    <div class="dashboard-main">
+      
+      <!-- Top header bar -->
+      <div class="dashboard-header">
+        <div style="display: flex; align-items: center;">
+          <button class="sidebar-trigger" id="sidebar-trigger">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <h2 id="view-title" style="font-family: var(--font-display); font-size: 1.3rem;">Submit 3D Mesh</h2>
+        </div>
+        <div class="header-user-info">
+          <button class="theme-toggle-btn" aria-label="Toggle Theme" style="border: none;"></button>
+          <div class="user-avatar-circle" id="user-avatar-initials">AJ</div>
+          <div class="user-name-box">
+            <span id="user-name-display" style="font-weight: 600; font-size: 0.95rem;">Alex Johnson</span>
+            <span class="user-role-badge">Customer</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scrollable Panel Body views -->
+      <div class="dashboard-content">
+
+        <!-- PANEL 1: Upload STL/OBJ CAD -->
+        <div class="dashboard-panel-view active" id="upload-panel">
+          <div class="glass-card">
+            <div class="upload-zone" id="drag-drop-zone">
+              <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              <h3 class="upload-title">Drag & Drop 3D Mesh Files</h3>
+              <p class="upload-hint">Supports STL, OBJ, and STEP format files (Max 50MB)</p>
+              <input type="file" id="file-uploader-input" style="display: none;" accept=".stl,.obj,.step,.cad">
+              <button class="btn btn-secondary btn-sm" onclick="document.getElementById('file-uploader-input').click()">Select File</button>
+            </div>
+            
+            <!-- Dynamic Processing and Estimates Area -->
+            <div id="upload-processing-box" style="display: none; margin-top: 2.5rem; text-align: center;">
+              <p style="font-weight: 600; margin-bottom: 1rem;">Analyzing model mesh geometries...</p>
+              <div class="preloader-logo" style="width: 60px; height: 60px; margin: 0 auto;">
+                <div class="preloader-ring" style="border-width: 3px;"></div>
+              </div>
+            </div>
+
+            <!-- Estimations display specs card -->
+            <div id="upload-estimates-box" style="display: none; margin-top: 2.5rem;">
+              <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">Mesh Geometries Sliced</h3>
+              
+              <div class="file-spec-grid">
+                <div class="spec-block"><div class="spec-title">File Name</div><div class="spec-data" id="est-filename">mesh.stl</div></div>
+                <div class="spec-block"><div class="spec-title">Bounding Dimensions</div><div class="spec-data" id="est-dims">120 x 120 x 85 mm</div></div>
+                <div class="spec-block"><div class="spec-title">Mesh Volume</div><div class="spec-data" id="est-volume">62 cm³</div></div>
+              </div>
+
+              <div class="file-spec-grid" style="margin-top: 1rem;">
+                <div class="spec-block"><div class="spec-title">Wall Thickness</div><div class="spec-data" id="est-thickness" style="color: var(--accent-success);">✔ PASS (>0.8mm)</div></div>
+                <div class="spec-block"><div class="spec-title">Volume Estimation</div><div class="spec-data" id="est-weight">76.88 g</div></div>
+                <div class="spec-block"><div class="spec-title">Machine Suitability</div><div class="spec-data" style="color: var(--accent-secondary);">✔ SLA, FDM, SLS Ready</div></div>
+              </div>
+
+              <!-- Submit form config -->
+              <form id="submit-project-form" style="margin-top: 2.5rem; border-top: 1px dashed var(--border-color); padding-top: 2rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                  <div class="form-group">
+                    <label for="order-technology" class="form-label">Production Method</label>
+                    <select id="order-technology" class="form-select" required>
+                      <option value="FDM">FDM (Fused Deposition Polymer)</option>
+                      <option value="SLA">SLA (Stereolithography Fine Resin)</option>
+                      <option value="SLS">SLS (Selective Laser Sintering Nylon)</option>
+                      <option value="DMLS">DMLS (Laser Metal Sintering Titanium)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="order-material" class="form-label">Material Class</label>
+                    <select id="order-material" class="form-select" required>
+                      <!-- Options will populate dynamically based on technology selection in script -->
+                    </select>
+                  </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                  <div class="form-group">
+                    <label for="order-infill" class="form-label">Infill Density (%)</label>
+                    <select id="order-infill" class="form-select" required>
+                      <option value="20%">20% (Lightweight Draft)</option>
+                      <option value="40%" selected>40% (Standard Semi-Solid)</option>
+                      <option value="80%">80% (High Stress Reinforce)</option>
+                      <option value="100%">100% (Solid Structural Core)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="order-resolution" class="form-label">Layer Height</label>
+                    <select id="order-resolution" class="form-select" required>
+                      <option value="200 microns">200 microns (Fast Draft)</option>
+                      <option value="100 microns" selected>100 microns (Standard High)</option>
+                      <option value="50 microns">50 microns (Fine Details)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="order-qty" class="form-label">Print Quantity</label>
+                    <input type="number" id="order-qty" class="form-input" min="1" max="100" value="1" required>
+                  </div>
+                </div>
+
+                <!-- Price summary and Action button -->
+                <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 2rem;">
+                  <div>
+                    <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Job Quoted Price</span>
+                    <h3 id="est-total-quoted" style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">$35.40</h3>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit for Review & Approval</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 2: Order Tracking -->
+        <div class="dashboard-panel-view" id="tracking-panel">
+          <div class="glass-card">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1.5rem;">Production Status Timelines</h3>
+            
+            <div id="tracking-list-empty" style="display: none; text-align: center; padding: 3rem 0; color: var(--text-muted);">
+              No active print orders running. Go to CAD Upload to submit.
+            </div>
+
+            <div id="tracking-cards-container">
+              <!-- Cards dynamically populated via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 3: Invoices & Payment -->
+        <div class="dashboard-panel-view" id="billing-panel">
+          <div class="glass-card">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1.5rem;">Print & Payment Records</h3>
+            
+            <div class="table-responsive">
+              <table class="table-custom">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>File Name</th>
+                    <th>Date Submitted</th>
+                    <th>Quoted Price</th>
+                    <th>Payment Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="billing-orders-table-rows">
+                  <!-- Rows populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 4: Support Center -->
+        <div class="dashboard-panel-view" id="support-panel">
+          <div class="responsive-split-grid">
+            
+            <!-- Ticket creation card -->
+            <div class="glass-card">
+              <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1.5rem;">Create Help Ticket</h3>
+              <form id="support-ticket-form">
+                <div class="form-group">
+                  <label for="ticket-subject" class="form-label">Subject</label>
+                  <input type="text" id="ticket-subject" class="form-input" placeholder="Thickness check advice" required>
+                </div>
+                <div class="form-group">
+                  <label for="ticket-cat" class="form-label">Category</label>
+                  <select id="ticket-cat" class="form-select">
+                    <option value="Design Advice">Design Advice</option>
+                    <option value="Material Specs">Material Specifications</option>
+                    <option value="Shipping & Delivery">Shipping & Delivery</option>
+                    <option value="Payment Inquiry">Payment & Billing</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="ticket-msg" class="form-label">Message Details</label>
+                  <textarea id="ticket-msg" class="form-textarea" placeholder="Detail your question..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Dispatch Ticket</button>
+              </form>
+            </div>
+
+            <!-- List of existing tickets -->
+            <div class="glass-card">
+              <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1.5rem;">Open & Resolved Tickets</h3>
+              <div id="tickets-list-container" style="display: flex; flex-direction: column; gap: 1rem;">
+                <!-- Dynamically loaded -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PANEL 5: Profile Settings -->
+        <div class="dashboard-panel-view" id="profile-panel">
+          <div class="glass-card" style="max-width: 600px;">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 2rem;">Manage Personal Coordinates</h3>
+            
+            <form id="customer-profile-form">
+              <div class="form-group">
+                <label for="prof-name" class="form-label">Full Name</label>
+                <input type="text" id="prof-name" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="prof-email" class="form-label">Email Address</label>
+                <input type="email" id="prof-email" class="form-input" disabled>
+                <small style="color: var(--text-muted);">Email addresses cannot be modified directly for verification safety.</small>
+              </div>
+              <div class="form-group">
+                <label for="prof-shipping" class="form-label">Default Shipping Coordinates</label>
+                <textarea id="prof-shipping" class="form-textarea" placeholder="104 Engineering Way, Suite 10, Menlo Park, CA 94025"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Save Settings</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- PANEL 6: Notifications -->
+        <div class="dashboard-panel-view" id="notifications-panel">
+          <div class="glass-card">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1.5rem;">Alerts & Notifications</h3>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <div class="glass-card" style="padding: 1rem; border-color: rgba(255,255,255,0.05); background: rgba(255,255,255,0.01);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                  <strong style="color: var(--accent-success);">System Update</strong>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">Just now</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Your mesh geometry for order STK-9402 has been successfully sliced and approved by our designer.</p>
+              </div>
+              <div class="glass-card" style="padding: 1rem; border-color: rgba(255,255,255,0.05); background: rgba(255,255,255,0.01);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                  <strong style="color: var(--accent-secondary);">Payment Received</strong>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">2 hours ago</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Invoice for order STK-8812 was processed successfully. Print queue position: #3.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 7: Usage Analytics -->
+        <div class="dashboard-panel-view" id="analytics-panel">
+          <div class="glass-card">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1.5rem;">Fabrication Usage Analytics</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 2rem;">Overview of your 3D printing orders, volumes, and print time metrics.</p>
+            <div class="grid-stats-cards" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+              <div class="glass-card stat-metric-card" style="margin-bottom:0;">
+                <div class="stat-value">142 g</div>
+                <div class="stat-label">Total Material Used</div>
+              </div>
+              <div class="glass-card stat-metric-card" style="margin-bottom:0;">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Successful Prints</div>
+              </div>
+              <div class="glass-card stat-metric-card" style="margin-bottom:0;">
+                <div class="stat-value">$120.40</div>
+                <div class="stat-label">Total Amount Spent</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Stripe-style Payment Modal -->
+  <div id="payment-modal" class="modal-overlay">
+    <div class="modal-container" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Secure Fabrication Checkout</h3>
+        <button class="modal-close-btn" onclick="closeModal('payment-modal')">&times;</button>
+      </div>
+      <form id="stripe-checkout-form">
+        <input type="hidden" id="pay-order-id">
+        <div class="modal-body">
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Fabricating job: <span id="pay-filename" style="color: var(--text-primary); font-weight:600;">mesh.stl</span> (<span id="pay-price" style="color: var(--accent-secondary); font-weight:700;">$0.00</span>)</p>
+          
+          <div class="form-group">
+            <label class="form-label">Cardholder Name</label>
+            <input type="text" class="form-input" placeholder="Alex Johnson" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Credit Card Number</label>
+            <input type="text" class="form-input" placeholder="4242 •••• •••• 4242" maxlength="19" required>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Expiry Date</label>
+              <input type="text" class="form-input" placeholder="MM/YY" maxlength="5" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">CVC Code</label>
+              <input type="password" class="form-input" placeholder="•••" maxlength="3" required>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('payment-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Process Payment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Support Message Thread Modal -->
+  <div id="ticket-messages-modal" class="modal-overlay">
+    <div class="modal-container" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="ticket-modal-title">Ticket Conversation</h3>
+        <button class="modal-close-btn" onclick="closeModal('ticket-messages-modal')">&times;</button>
+      </div>
+      <div class="modal-body" style="max-height: 350px; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; background: var(--bg-primary);" id="ticket-chat-history">
+        <!-- Message list loaded -->
+      </div>
+      <form id="ticket-reply-form" style="display: flex; gap: 0.5rem; padding: 1.25rem; border-top: 1px solid var(--border-color);">
+        <input type="hidden" id="ticket-modal-id">
+        <input type="text" id="ticket-reply-text" class="form-input" placeholder="Write a response..." required style="flex-grow: 1;">
+        <button type="submit" class="btn btn-primary btn-sm">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/icons.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard-customer.js"></script>
+  <script>
+    // Intercept clicks on any buttons or links styled as buttons, and redirect to 404.html
+    document.addEventListener('click', function(e) {
+      const target = e.target.closest('button, .btn, input[type="submit"], input[type="button"]');
+      if (target) {
+        // Exclude UI control buttons (mobile hamburger, theme toggler, modal closing, logout)
+        if (
+          target.textContent.includes('Sign Out') || 
+          target.closest('.sidebar-footer') || 
+          target.closest('.sidebar-trigger') || 
+          target.closest('.theme-toggle-btn') || 
+          target.closest('.modal-close-btn') ||
+          target.closest('.sidebar-close-btn')
+        ) {
+          return;
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = '404.html';
+      }
+    }, true);
+  </script>
+</body>
+</html>

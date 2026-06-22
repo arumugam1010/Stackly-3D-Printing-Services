@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Stackly 3D</title>
+  <meta name="description"
+    content="Reach out to our additive design engineering department. Submit quotes or request physical scans of mechanical parts.">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .contact-hero {
+      padding: 140px 2rem 50px 2rem;
+      background: url('assets/images/hero_contact.webp') no-repeat center center/cover;
+      position: relative;
+    }
+
+    .contact-hero h1 {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-hero p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-visual {
+      position: relative;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+      }
+
+      .contact-hero .hero-content {
+        text-align: center !important;
+      }
+    }
+
+    .contact-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .contact-info-item {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .contact-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: rgba(255, 255, 255, 0.02);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-secondary);
+      flex-shrink: 0;
+    }
+
+    .info-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .mock-map {
+      height: 250px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.2) 0%, rgba(15, 23, 42, 0.4) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Interactive Floating Chat Widget */
+    .chat-widget-wrapper {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1000;
+      font-family: var(--font-sans);
+    }
+
+    .chat-bubble-toggle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--grad-primary);
+      border: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(238, 85, 54, 0.4);
+      transition: all var(--transition-normal);
+    }
+
+    .chat-bubble-toggle:hover {
+      transform: scale(1.05) rotate(10deg);
+    }
+
+    .chat-window {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 330px;
+      height: 420px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--glass-shadow-hover);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.9);
+      opacity: 0;
+      visibility: hidden;
+      transform-origin: bottom right;
+      transition: all var(--transition-normal);
+    }
+
+    .chat-window.active {
+      transform: scale(1);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .chat-header {
+      padding: 1rem;
+      background: var(--grad-primary);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .chat-close {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.25rem;
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+    .chat-close:hover {
+      opacity: 1;
+    }
+
+    .chat-messages {
+      flex-grow: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      background: var(--bg-primary);
+    }
+
+    .chat-msg {
+      max-width: 80%;
+      padding: 0.6rem 0.8rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .msg-bot {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      align-self: flex-start;
+      border-bottom-left-radius: 2px;
+    }
+
+    .msg-user {
+      background: var(--accent-primary);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 2px;
+    }
+
+    .chat-input-area {
+      padding: 0.75rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .chat-text-input {
+      flex-grow: 1;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-primary);
+      outline: none;
+      font-size: 0.85rem;
+    }
+
+    .chat-send-btn {
+      background: var(--grad-primary);
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+  </style>
+</head>
+
+<body data-theme="dark">
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-logo">
+      <div class="preloader-ring"></div>
+      <div class="preloader-core"></div>
+    </div>
+    <p>STACKLY 3D</p>
+  </div>
+
+  <!-- Header Nav -->
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="brand">
+        <div class="brand-icon" data-icon="printer"></div>
+        <span>Stackly<span
+            style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">3D</span></span>
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle">Pages</a>
+          <div class="dropdown-menu">
+            <a href="about.html" class="dropdown-item">About Us</a>
+            <a href="services.html" class="dropdown-item">Our Services</a>
+            <a href="materials.html" class="dropdown-item">Materials</a>
+            <a href="pricing.html" class="dropdown-item">Pricing</a>
+            <a href="technologies.html" class="dropdown-item">Technologies</a>
+            <a href="industries.html" class="dropdown-item">Industries</a>
+            <a href="blog.html" class="dropdown-item">Blog</a>
+          </div>
+        </div>
+        <a href="gallery.html" class="nav-link">Portfolio</a>
+        <a href="pricing.html" class="nav-link">Shop</a>
+        <a href="contact.html" class="nav-link">Contacts</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle Theme"></button>
+        <a href="login.html" class="btn btn-glass btn-sm">LogIn</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contact Hero -->
+  <section class="contact-hero">
+    <div class="glow-shape glow-1"></div>
+    <div class="glow-shape glow-2"></div>
+    <div class="hero-grid">
+      <div class="hero-content animate-fade-in-up hero-glass-card" style="text-align: left;">
+        <span class="section-subtitle">Reach Out</span>
+        <h1>Contact Additive Support</h1>
+        <p>Have structural design questions, batch quote requests, or scanner calibration queries? Drop us a message.
+        </p>
+      </div>
+      <div class="hero-visual animate-fade-in-up">
+        <div class="interactive-3d-graphic" data-type="contact-beacon" style="width: 100%; height: 400px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form & Info Grid -->
+  <section>
+    <div class="contact-grid">
+
+      <!-- Info Left Col -->
+      <div class="contact-info-list" style="padding-right: 2rem;">
+
+        <h2
+          style="font-family: var(--font-display); font-size: 2.25rem; font-weight: 800; margin-bottom: 2rem; color: var(--text-primary);">
+          Headquarters</h2>
+
+        <div class="contact-info-item"
+          style="margin-bottom: 1.5rem; display: flex; gap: 1.25rem; align-items: flex-start;">
+          <div
+            style="color: var(--text-primary); width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.2rem;"
+            data-icon="map"></div>
+          <div>
+            <p class="info-desc" style="font-size: 1.1rem; line-height: 1.5; color: var(--text-secondary); margin: 0;">
+              Stackly Clothing, Chinna Tirupathi, Salem, Tamil Nadu – 636008</p>
+          </div>
+        </div>
+
+        <div class="contact-info-item" style="margin-bottom: 1.5rem; display: flex; gap: 1.25rem; align-items: center;">
+          <div
+            style="color: var(--text-primary); width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"
+            data-icon="phone"></div>
+          <div>
+            <p class="info-desc" style="font-size: 1.1rem; color: var(--text-secondary); margin: 0;">+91 9876543210</p>
+          </div>
+        </div>
+
+        <div class="contact-info-item" style="margin-bottom: 1.5rem; display: flex; gap: 1.25rem; align-items: center;">
+          <div
+            style="color: var(--text-primary); width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"
+            data-icon="mail"></div>
+          <div>
+            <p class="info-desc" style="font-size: 1.1rem; color: var(--text-secondary); margin: 0;">
+              support@thestackly.com</p>
+          </div>
+        </div>
+
+        <div class="contact-info-item" style="margin-bottom: 2.5rem; display: flex; gap: 1.25rem; align-items: center;">
+          <div
+            style="color: var(--text-primary); width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"
+            data-icon="clock"></div>
+          <div>
+            <p class="info-desc" style="font-size: 1.1rem; color: var(--text-secondary); margin: 0;">Mon - Fri: 9:30 AM
+              - 6:30 PM</p>
+          </div>
+        </div>
+
+
+        <!-- Google Maps Mock -->
+        <div class="mock-map">
+          📍 Map: Salem Additive Hub
+        </div>
+
+      </div>
+
+      <!-- Form Right Col -->
+      <div class="glass-card">
+        <h2 style="font-family: var(--font-display); margin-bottom: 2rem; font-size: 1.5rem;">Send a Message</h2>
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="contact-name" class="form-label">Full Name</label>
+            <input type="text" id="contact-name" class="form-input" placeholder="Alex Johnson" pattern="^[a-zA-Z\s']+$"
+              title="Full Name should only contain letters and spaces." required>
+          </div>
+          <div class="form-group">
+            <label for="contact-email" class="form-label">Email Address</label>
+            <input type="email" id="contact-email" class="form-input" placeholder="alex@company.com" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-subject" class="form-label">Subject</label>
+            <input type="text" id="contact-subject" class="form-input" placeholder="Batch Pricing Query" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-msg" class="form-label">Your Inquiry</label>
+            <textarea id="contact-msg" class="form-textarea"
+              placeholder="Detail your project dimensions, mesh format (STL/OBJ), and required materials..."
+              required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Persistent Floating Interactive Chat Client -->
+  <div class="chat-widget-wrapper">
+    <button class="chat-bubble-toggle" id="chat-toggle" aria-label="Toggle Support Chat">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    </button>
+    <div class="chat-window" id="chat-window">
+      <div class="chat-header">
+        <span class="chat-title">Stackly Support Bot</span>
+        <button class="chat-close" id="chat-close">&times;</button>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="chat-msg msg-bot">Hello! Thanks for visiting Stackly 3D. How can I help you today?</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" class="chat-text-input" placeholder="Type a message...">
+        <button id="chat-send" class="chat-send-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <div class="brand-icon" data-icon="printer"></div>
+          <span>Stackly<span
+              style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">3D</span></span>
+        </a>
+        <p>Enterprise cloud manufacturing platform. Custom SLA, FDM, SLS print operations globally.</p>
+        <div class="footer-socials">
+          <a href="404.html" class="social-icon" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path
+                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z" />
+            </svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="materials.html">Materials</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="pricing.html">Cost Calculator</a></li>
+          <li><a href="technologies.html">Technologies</a></li>
+          <li><a href="industries.html">Industries Served</a></li>
+          <li><a href="gallery.html">Project Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="blog.html">Blog & News</a></li>
+          <li><a href="login.html">Login Portal</a></li>
+          <li><a href="register.html">Register Account</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Stackly 3D Printing Services. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating action elements -->
+  <div class="fab-container" style="display: none;">
+    <!-- Hide default FAB as we have a specialized chat widget in this page -->
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/icons.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/three-graphics.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Contact Form Submit validation
+      const form = document.getElementById('contact-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nameInput = document.getElementById('contact-name');
+        const nameValue = nameInput.value.trim();
+
+        // Regex to verify that full name contains only alphabetical characters and spaces
+        const validNameRegex = /^[A-Za-z\s']+$/;
+        if (!validNameRegex.test(nameValue)) {
+          showNotification('Validation Error', 'Full Name should only contain letters and spaces.', 'error');
+          nameInput.focus();
+          return;
+        }
+
+        showNotification('Inquiry Submitted', `Thank you ${nameValue}, our engineer team will reply shortly.`, 'success');
+        form.reset();
+      });
+
+      // 2. Simulated Interactive Chat Client
+      const chatToggle = document.getElementById('chat-toggle');
+      const chatClose = document.getElementById('chat-close');
+      const chatWindow = document.getElementById('chat-window');
+      const chatSend = document.getElementById('chat-send');
+      const chatInput = document.getElementById('chat-input');
+      const chatMessages = document.getElementById('chat-messages');
+
+      chatToggle.addEventListener('click', () => {
+        chatWindow.classList.add('active');
+      });
+      chatClose.addEventListener('click', () => {
+        chatWindow.classList.remove('active');
+      });
+
+      function appendMessage(text, isUser = false) {
+        const msg = document.createElement('div');
+        msg.className = `chat-msg ${isUser ? 'msg-user' : 'msg-bot'}`;
+        msg.innerText = text;
+        chatMessages.appendChild(msg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function handleChatSubmit() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        appendMessage(text, true);
+        chatInput.value = '';
+
+        // Mock automated smart responses
+        setTimeout(() => {
+          const lowerText = text.toLowerCase();
+          if (lowerText.includes('price') || lowerText.includes('cost') || lowerText.includes('calculator')) {
+            appendMessage("You can calculate real-time estimates for your STL/OBJ models using our Pricing page. Select your material and volume to view total charges.");
+          } else if (lowerText.includes('upload') || lowerText.includes('stl') || lowerText.includes('cad')) {
+            appendMessage("To upload models, please LogIn to your Customer Portal dashboard, drag the files into the drop zone, and submit a quote request.");
+          } else if (lowerText.includes('hello') || lowerText.includes('hi')) {
+            appendMessage("Hello! Let me know if you need help with pricing estimates, file validation, or role logins.");
+          } else {
+            appendMessage("I am a simulated assistant. For custom production schedules, please submit a Contact form inquiry above, and our administrative desk will respond.");
+          }
+        }, 800);
+      }
+
+      chatSend.addEventListener('click', handleChatSubmit);
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') handleChatSubmit();
+      });
+    });
+  </script>
+</body>
+
+</html>

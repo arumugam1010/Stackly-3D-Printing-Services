@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Materials Catalog | Stackly 3D - Engineering Specifications</title>
+  <meta name="description"
+    content="View our extensive 3D printing materials. Compare tensile strength, flexural modulus, and heat deflection of PLA, ABS, Nylon, Resins, and Metals.">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .materials-hero {
+      padding: 140px 2rem 50px 2rem;
+      background: url('assets/images/hero_materials.webp') no-repeat center center/cover;
+      position: relative;
+    }
+
+    .materials-hero h1 {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+
+    .materials-hero p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-visual {
+      position: relative;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+      }
+
+      .materials-hero .hero-content {
+        text-align: center !important;
+      }
+    }
+
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0 4rem 0;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 0.6rem 1.5rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(19, 23, 32, 0.6);
+      color: rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+      backdrop-filter: blur(4px);
+    }
+
+    .filter-tab:hover,
+    .filter-tab.active {
+      border-color: var(--accent-primary);
+      background: var(--grad-primary);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(238, 85, 54, 0.3);
+    }
+
+    .materials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .material-card {
+      transition: all var(--transition-normal);
+    }
+
+    .material-card.hidden {
+      display: none !important;
+    }
+
+    .material-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    .material-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .material-type {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--accent-secondary);
+      border: 1px solid var(--accent-secondary);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .material-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+
+    .spec-label {
+      color: var(--text-secondary);
+    }
+
+    .spec-value {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+
+<body data-theme="dark">
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-logo">
+      <div class="preloader-ring"></div>
+      <div class="preloader-core"></div>
+    </div>
+    <p>STACKLY 3D</p>
+  </div>
+
+  <!-- Header Nav -->
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="brand">
+        <div class="brand-icon" data-icon="printer"></div>
+        <span>Stackly<span
+            style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">3D</span></span>
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle">Pages</a>
+          <div class="dropdown-menu">
+            <a href="about.html" class="dropdown-item">About Us</a>
+            <a href="services.html" class="dropdown-item">Our Services</a>
+            <a href="materials.html" class="dropdown-item">Materials</a>
+            <a href="pricing.html" class="dropdown-item">Pricing</a>
+            <a href="technologies.html" class="dropdown-item">Technologies</a>
+            <a href="industries.html" class="dropdown-item">Industries</a>
+            <a href="blog.html" class="dropdown-item">Blog</a>
+          </div>
+        </div>
+        <a href="gallery.html" class="nav-link">Portfolio</a>
+        <a href="pricing.html" class="nav-link">Shop</a>
+        <a href="contact.html" class="nav-link">Contacts</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle Theme"></button>
+        <a href="login.html" class="btn btn-glass btn-sm">LogIn</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Materials Hero -->
+  <section class="materials-hero">
+    <div class="glow-shape glow-1"></div>
+    <div class="glow-shape glow-2"></div>
+    <div class="hero-grid">
+      <div class="hero-content animate-fade-in-up hero-glass-card" style="text-align: left;">
+        <span class="section-subtitle">Spec Sheet</span>
+        <h1>Material Catalog</h1>
+        <p>Compare thermal capabilities, elasticity, and load boundaries across our library of high-grade engineering
+          polymers, clear resins, and structural metals.</p>
+      </div>
+      <div class="hero-visual animate-fade-in-up">
+        <div class="interactive-3d-graphic" data-type="materials-lattice" style="width: 100%; height: 400px;"></div>
+      </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs animate-fade-in-up">
+      <button class="filter-tab active" data-filter="all">All Materials</button>
+      <button class="filter-tab" data-filter="polymers">Polymers</button>
+      <button class="filter-tab" data-filter="resins">Resins</button>
+      <button class="filter-tab" data-filter="metals">Metals</button>
+    </div>
+  </section>
+
+  <!-- Materials Catalog Grid -->
+  <section>
+    <div class="materials-grid">
+
+      <!-- PLA Polymer -->
+      <div class="glass-card material-card" data-category="polymers">
+        <div class="material-header">
+          <span class="material-name">PLA Plus</span>
+          <span class="material-type">Polymer</span>
+        </div>
+        <div class="material-specs">
+          <div class="spec-row"><span class="spec-label">Tensile Strength</span><span class="spec-value">45 MPa</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Flexural Modulus</span><span class="spec-value">2.8 GPa</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Heat Deflection Temp</span><span class="spec-value">55
+              °C</span></div>
+          <div class="spec-row"><span class="spec-label">Relative Cost</span><span class="spec-value">Low ($)</span>
+          </div>
+        </div>
+        <a href="404.html" class="btn btn-secondary btn-sm" style="width: 100%;">Calculate Cost</a>
+      </div>
+
+      <!-- ABS Polymer -->
+      <div class="glass-card material-card" data-category="polymers">
+        <div class="material-header">
+          <span class="material-name">ABS (Industrial)</span>
+          <span class="material-type">Polymer</span>
+        </div>
+        <div class="material-specs">
+          <div class="spec-row"><span class="spec-label">Tensile Strength</span><span class="spec-value">33 MPa</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Flexural Modulus</span><span class="spec-value">2.1 GPa</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Heat Deflection Temp</span><span class="spec-value">85
+              °C</span></div>
+          <div class="spec-row"><span class="spec-label">Relative Cost</span><span class="spec-value">Low ($)</span>
+          </div>
+        </div>
+        <a href="404.html" class="btn btn-secondary btn-sm" style="width: 100%;">Calculate Cost</a>
+      </div>
+
+      <!-- PA12 Nylon Polymer -->
+      <div class="glass-card material-card" data-category="polymers">
+        <div class="material-header">
+          <span class="material-name">Nylon PA 12 (SLS)</span>
+          <span class="material-type">Polymer</span>
+        </div>
+        <div class="material-specs">
+          <div class="spec-row"><span class="spec-label">Tensile Strength</span><span class="spec-value">48 MPa</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Flexural Modulus</span><span class="spec-value">1.6 GPa</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Heat Deflection Temp</span><span class="spec-value">110
+              °C</span></div>
+          <div class="spec-row"><span class="spec-label">Relative Cost</span><span class="spec-value">Medium ($$)</span>
+          </div>
+        </div>
+        <a href="404.html" class="btn btn-secondary btn-sm" style="width: 100%;">Calculate Cost</a>
+      </div>
+
+      <!-- Tough Resin -->
+      <div class="glass-card material-card" data-category="resins">
+        <div class="material-header">
+          <span class="material-name">Tough Resin</span>
+          <span class="material-type">Resin</span>
+        </div>
+        <div class="material-specs">
+          <div class="spec-row"><span class="spec-label">Tensile Strength</span><span class="spec-value">55 MPa</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Flexural Modulus</span><span class="spec-value">2.5 GPa</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Heat Deflection Temp</span><span class="spec-value">60
+              °C</span></div>
+          <div class="spec-row"><span class="spec-label">Relative Cost</span><span class="spec-value">Medium ($$)</span>
+          </div>
+        </div>
+        <a href="404.html" class="btn btn-secondary btn-sm" style="width: 100%;">Calculate Cost</a>
+      </div>
+
+      <!-- High Temp Resin -->
+      <div class="glass-card material-card" data-category="resins">
+        <div class="material-header">
+          <span class="material-name">Clear Bio-Resin</span>
+          <span class="material-type">Resin</span>
+        </div>
+        <div class="material-specs">
+          <div class="spec-row"><span class="spec-label">Tensile Strength</span><span class="spec-value">62 MPa</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Flexural Modulus</span><span class="spec-value">3.0 GPa</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Heat Deflection Temp</span><span class="spec-value">75
+              °C</span></div>
+          <div class="spec-row"><span class="spec-label">Relative Cost</span><span class="spec-value">Medium ($$)</span>
+          </div>
+        </div>
+        <a href="404.html" class="btn btn-secondary btn-sm" style="width: 100%;">Calculate Cost</a>
+      </div>
+
+      <!-- Titanium Alloy Metal -->
+      <div class="glass-card material-card" data-category="metals">
+        <div class="material-header">
+          <span class="material-name">Titanium (Grade 5)</span>
+          <span class="material-type">Metal</span>
+        </div>
+        <div class="material-specs">
+          <div class="spec-row"><span class="spec-label">Tensile Strength</span><span class="spec-value">950 MPa</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Flexural Modulus</span><span class="spec-value">110 GPa</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Heat Deflection Temp</span><span class="spec-value">350
+              °C</span></div>
+          <div class="spec-row"><span class="spec-label">Relative Cost</span><span class="spec-value">Premium
+              ($$$)</span></div>
+        </div>
+        <a href="404.html" class="btn btn-secondary btn-sm" style="width: 100%;">Calculate Cost</a>
+      </div>
+
+      <!-- Stainless Steel Metal -->
+      <div class="glass-card material-card" data-category="metals">
+        <div class="material-header">
+          <span class="material-name">316L Stainless Steel</span>
+          <span class="material-type">Metal</span>
+        </div>
+        <div class="material-specs">
+          <div class="spec-row"><span class="spec-label">Tensile Strength</span><span class="spec-value">550 MPa</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Flexural Modulus</span><span class="spec-value">190 GPa</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Heat Deflection Temp</span><span class="spec-value">600
+              °C</span></div>
+          <div class="spec-row"><span class="spec-label">Relative Cost</span><span class="spec-value">High ($$$)</span>
+          </div>
+        </div>
+        <a href="404.html" class="btn btn-secondary btn-sm" style="width: 100%;">Calculate Cost</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Material Science Comparison Section -->
+  <section class="section-bg-alt">
+    <div class="section-header">
+      <span class="section-subtitle">Technical Matrix</span>
+      <h2 class="section-title">Comparative Analysis & Stress Caps</h2>
+    </div>
+
+    <div class="table-responsive" style="max-width: var(--max-width); margin: 0 auto; padding: 0 1rem;">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th style="padding: 1rem;">Material Class</th>
+            <th style="padding: 1rem;">Tensile Strength (MPa)</th>
+            <th style="padding: 1rem;">Elongation at Break (%)</th>
+            <th style="padding: 1rem;">Heat Deflection (°C)</th>
+            <th style="padding: 1rem;">Recommended Applications</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 1rem;"><strong>PLA Plus (FDM)</strong></td>
+            <td style="padding: 1rem;">45 - 50 MPa</td>
+            <td style="padding: 1rem;">6%</td>
+            <td style="padding: 1rem;">55 °C</td>
+            <td style="padding: 1rem;">Rapid prototyping, structural casings, visual fit assemblies</td>
+          </tr>
+          <tr>
+            <td style="padding: 1rem;"><strong>Nylon PA12 (SLS)</strong></td>
+            <td style="padding: 1rem;">48 MPa</td>
+            <td style="padding: 1rem;">18%</td>
+            <td style="padding: 1rem;">110 °C</td>
+            <td style="padding: 1rem;">Snap-fit joints, living hinges, protective gear, gearboxes</td>
+          </tr>
+          <tr>
+            <td style="padding: 1rem;"><strong>Tough Resin (SLA)</strong></td>
+            <td style="padding: 1rem;">55 MPa</td>
+            <td style="padding: 1rem;">12%</td>
+            <td style="padding: 1rem;">60 °C</td>
+            <td style="padding: 1rem;">Functional mockups, high-precision enclosures, orthotic mounts</td>
+          </tr>
+          <tr>
+            <td style="padding: 1rem;"><strong>Grade 5 Titanium (DMLS)</strong></td>
+            <td style="padding: 1rem;">950 MPa</td>
+            <td style="padding: 1rem;">10%</td>
+            <td style="padding: 1rem;">350 °C</td>
+            <td style="padding: 1rem;">Aerospace brackets, medical implants, high-temp fluid manifolds</td>
+          </tr>
+          <tr>
+            <td style="padding: 1rem;"><strong>Stainless Steel 316L (DMLS)</strong></td>
+            <td style="padding: 1rem;">550 MPa</td>
+            <td style="padding: 1rem;">30%</td>
+            <td style="padding: 1rem;">600 °C</td>
+            <td style="padding: 1rem;">Marine fittings, engine manifolds, chemical processing components</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <div class="brand-icon" data-icon="printer"></div>
+          <span>Stackly<span
+              style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">3D</span></span>
+        </a>
+        <p>Enterprise cloud manufacturing platform. Custom SLA, FDM, SLS print operations globally.</p>
+        <div class="footer-socials">
+          <a href="404.html" class="social-icon" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path
+                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z" />
+            </svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="materials.html">Materials</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="pricing.html">Cost Calculator</a></li>
+          <li><a href="technologies.html">Technologies</a></li>
+          <li><a href="industries.html">Industries Served</a></li>
+          <li><a href="gallery.html">Project Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="blog.html">Blog & News</a></li>
+          <li><a href="login.html">Login Portal</a></li>
+          <li><a href="register.html">Register Account</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Stackly 3D Printing Services. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating action elements -->
+  <div class="fab-container">
+    <button class="theme-toggle-btn" aria-label="Toggle Theme"></button>
+    <a href="contact.html" class="fab-btn" aria-label="Support Desk">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/icons.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/three-graphics.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.filter-tab');
+      const cards = document.querySelectorAll('.material-card');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          const filterValue = tab.getAttribute('data-filter');
+
+          cards.forEach(card => {
+            if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

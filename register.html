@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Stackly 3D - Enterprise 3D Printing Services</title>
+  <meta name="description"
+    content="Join Stackly 3D and access premium rapid prototyping, custom part manufacturing, and model verification tools.">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body data-theme="dark">
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-logo">
+      <div class="preloader-ring"></div>
+      <div class="preloader-core"></div>
+    </div>
+    <p>STACKLY 3D</p>
+  </div>
+
+  <div class="auth-page">
+    <!-- Glowing background elements -->
+    <div class="glow-shape glow-1"></div>
+    <div class="glow-shape glow-2"></div>
+
+    <div class="auth-container animate-fade-in-up">
+    
+      <!-- Logo Branding -->
+      <a href="index.html" class="auth-logo">
+        <div class="brand-icon" data-icon="printer"></div>
+        <span>Stackly<span
+            style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">3D</span></span>
+      </a>
+
+      <!-- Card Frame -->
+      <div class="glass-card auth-card">
+          <!-- Back to Home -->
+      <a href="index.html" class="back-to-home">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back to Home</span>
+      </a>
+
+        <div class="auth-header">
+          <h1 class="auth-title">Create Account</h1>
+          <p class="auth-subtitle">Already have one? <a href="login.html">LogIn</a></p>
+        </div>
+
+        <!-- Registration Form -->
+        <form id="register-form">
+
+          <!-- Role Selection Cards -->
+          <div class="form-group">
+            <span class="form-label">Select Your Role</span>
+            <div class="role-selector-grid">
+
+              <div class="role-option-card selected" data-role="customer">
+                <div class="role-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <span class="role-option-title">Customer</span>
+              </div>
+
+              <div class="role-option-card" data-role="designer">
+                <div class="role-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                </div>
+                <span class="role-option-title">Designer</span>
+              </div>
+
+              <div class="role-option-card" data-role="admin">
+                <div class="role-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                </div>
+                <span class="role-option-title">Admin</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fullname" class="form-label">Full Name</label>
+            <input type="text" id="fullname" class="form-input" placeholder="Alex Johnson" required autocomplete="name">
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" id="email" class="form-input" placeholder="alex@example.com" required
+              autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="password" class="form-input" placeholder="••••••••" required
+                autocomplete="new-password">
+              <button type="button" class="password-toggle-btn" aria-label="Toggle Password Visibility">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="eye-open-icon">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirm-password" class="form-label">Confirm Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="confirm-password" class="form-input" placeholder="••••••••" required
+                autocomplete="new-password">
+              <button type="button" class="password-toggle-btn" aria-label="Toggle Confirm Password Visibility">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="eye-open-icon">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-checkbox-label">
+              <input type="checkbox" id="terms" class="form-checkbox" required>
+              <span>I agree to the <a href="404.html" style="color: var(--accent-primary);">Terms of Service</a> & <a
+                  href="404.html" style="color: var(--accent-primary);">Privacy Policy</a></span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+            Create Account
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="fab-container">
+    <button class="theme-toggle-btn" aria-label="Toggle Dark/Light Theme"></button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/icons.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let selectedRole = 'customer';
+
+      // Role selection interactivity
+      const roleCards = document.querySelectorAll('.role-option-card');
+      roleCards.forEach(card => {
+        card.addEventListener('click', () => {
+          roleCards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          selectedRole = card.getAttribute('data-role');
+        });
+      });
+
+      // Password visibility toggle
+      const toggleBtns = document.querySelectorAll('.password-toggle-btn');
+      toggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const input = btn.previousElementSibling;
+          const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+          input.setAttribute('type', type);
+        });
+      });
+
+      // Submit Form
+      const form = document.getElementById('register-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('fullname').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const confirmPassword = document.getElementById('confirm-password').value.trim();
+
+        if (!name || !email || !password || !confirmPassword) {
+          showNotification('Required Fields', 'Please complete all form fields', 'danger');
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          showNotification('Password Mismatch', 'Passwords do not match. Please verify.', 'warning');
+          return;
+        }
+
+        const res = window.authSystem.registerUser(name, email, password, selectedRole);
+        if (res.success) {
+          showNotification('Account Created', res.message, 'success');
+          setTimeout(() => {
+            window.location.href = "verify.html";
+          }, 1000);
+        } else {
+          showNotification('Registration Error', res.message, 'danger');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

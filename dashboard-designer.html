@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Designer Workspace | Stackly 3D</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    .checklist-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .checklist-row:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <!-- Security Guard: Enforce Designer role check -->
+  <script src="js/auth.js"></script>
+  <script>
+    window.authSystem.checkDashboardAccess('designer');
+  </script>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-logo">
+      <div class="preloader-ring"></div>
+      <div class="preloader-core"></div>
+    </div>
+    <p>DESIGNER STUDIO</p>
+  </div>
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar Navigation -->
+    <div class="dashboard-sidebar" id="dashboard-sidebar">
+      <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close Sidebar">&times;</button>
+      <div class="sidebar-logo">
+        <div class="brand-icon" data-icon="printer"></div>
+        <span>Stackly<span style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">3D</span></span>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <div class="sidebar-link active" data-target="designer-queue-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          <span>Assigned Queue</span>
+        </div>
+        <div class="sidebar-link" data-target="designer-messages-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Client Communication</span>
+        </div>
+        <div class="sidebar-link" data-target="designer-records-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          <span>Production Records</span>
+        </div>
+        <div class="sidebar-link" data-target="designer-diagnostics-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>
+          <span>Mesh Diagnostics</span>
+        </div>
+        <div class="sidebar-link" data-target="designer-tools-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+          <span>Slicing Tools</span>
+        </div>
+        <div class="sidebar-link" data-target="designer-schedule-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span>Shift Schedule</span>
+        </div>
+        <div class="sidebar-link" data-target="designer-settings-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span>Studio Settings</span>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="sidebar-link" style="width: 100%; border: none;" onclick="window.authSystem.logoutUser()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          <span>Sign Out</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="dashboard-main">
+      
+      <!-- Top bar header -->
+      <div class="dashboard-header">
+        <div style="display: flex; align-items: center;">
+          <button class="sidebar-trigger" id="sidebar-trigger">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <h2 id="view-title" style="font-family: var(--font-display); font-size: 1.3rem;">Assigned Queue</h2>
+        </div>
+        <div class="header-user-info">
+          <button class="theme-toggle-btn" aria-label="Toggle Theme" style="border: none;"></button>
+          <div class="user-avatar-circle" style="border-color: var(--accent-secondary);">MV</div>
+          <div class="user-name-box">
+            <span style="font-weight: 600; font-size: 0.95rem;">Marcus Vance</span>
+            <span class="user-role-badge" style="color: var(--accent-secondary);">3D Designer</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard View panels -->
+      <div class="dashboard-content">
+
+        <!-- PANEL 1: Model validation queue -->
+        <div class="dashboard-panel-view active" id="designer-queue-panel">
+          <div class="designer-split-grid" id="queue-split-grid">
+            
+            <!-- List of assigned orders -->
+            <div class="glass-card">
+              <h3 style="font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 1.5rem;">Assigned Models</h3>
+              <div id="designer-orders-container" style="display: flex; flex-direction: column; gap: 1rem;">
+                <!-- Populate dynamically via JS -->
+              </div>
+            </div>
+
+            <!-- Validation Checklist (Displays when a model is selected) -->
+            <div class="glass-card" id="validation-checklist-card" style="display: none;">
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                <h3 style="font-family: var(--font-display); font-size: 1.2rem;" id="val-order-id">STK-9402</h3>
+                <span class="badge badge-progress" id="val-order-status">In Review</span>
+              </div>
+
+              <div style="margin-bottom: 1.5rem;">
+                <p style="font-size: 0.9rem; margin-bottom: 0.25rem;">File: <strong id="val-filename">mesh.stl</strong></p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.25rem;">Technology: <span id="val-tech">SLA</span></p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.25rem;">Material Class: <span id="val-material">Nylon</span></p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">Payment status: <strong id="val-payment" style="text-transform: capitalize;">Paid</strong></p>
+              </div>
+
+              <!-- Interactive checklists -->
+              <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; font-weight:700;">File Integrity Verification</h4>
+              <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.5rem 1rem; margin-bottom: 2rem;">
+                <div class="checklist-row">
+                  <span style="font-size: 0.9rem;">Wall Thickness Check (>0.8mm)</span>
+                  <label class="form-checkbox-label">
+                    <input type="checkbox" id="check-thickness" class="form-checkbox">
+                  </label>
+                </div>
+                <div class="checklist-row">
+                  <span style="font-size: 0.9rem;">Manifold Geometry Check (Water-Tight)</span>
+                  <label class="form-checkbox-label">
+                    <input type="checkbox" id="check-geometry" class="form-checkbox">
+                  </label>
+                </div>
+                <div class="checklist-row">
+                  <span style="font-size: 0.9rem;">Printer Envelope Sizing (Fits Build Plate)</span>
+                  <label class="form-checkbox-label">
+                    <input type="checkbox" id="check-volume" class="form-checkbox">
+                  </label>
+                </div>
+              </div>
+
+              <!-- Production update inputs -->
+              <div class="form-group" style="margin-bottom: 2rem;">
+                <label for="val-update-status-select" class="form-label">Set Production Stage</label>
+                <select id="val-update-status-select" class="form-select">
+                  <option value="approved">Approved (Queue Sliced)</option>
+                  <option value="in_production">In Production (Extruding/Curing)</option>
+                  <option value="shipped">Shipped (Tracking Number Active)</option>
+                  <option value="completed">Completed (Delivered)</option>
+                </select>
+              </div>
+
+              <div style="display: flex; gap: 1rem;">
+                <button type="button" class="btn btn-primary" id="btn-save-validation" style="flex-grow: 1;">Update Job Progress</button>
+                <button type="button" class="btn btn-secondary" id="btn-escalate-order" style="color: var(--accent-danger); border-color: rgba(239, 68, 68, 0.2);">Escalate Issue</button>
+              </div>
+
+            </div>
+
+            <!-- Welcome select placeholder -->
+            <div class="glass-card" id="val-placeholder-card" style="text-align: center; padding: 5rem 0; color: var(--text-muted);">
+              Select a model file from the queue to run mesh diagnostics and update prints.
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PANEL 2: Communications chat boards -->
+        <div class="dashboard-panel-view" id="designer-messages-panel">
+          <div class="chat-inbox-grid">
+            <!-- Left Side conversations tab lists -->
+            <div class="inbox-list-col" id="designer-inbox-thread-rows">
+              <!-- Dynamically populated -->
+            </div>
+            
+            <!-- Right side thread board messaging client -->
+            <div style="display: flex; flex-direction: column; height: 100%;">
+              <div style="padding: 1rem; border-bottom: 1px solid var(--border-color); background: var(--bg-secondary); font-weight:600;" id="inbox-chat-header">
+                Client Chat Thread
+              </div>
+              <div class="chat-messages" id="inbox-chat-history" style="flex-grow: 1;">
+                <div style="text-align: center; margin: auto; color: var(--text-muted);">
+                  Select a support conversation to view messages.
+                </div>
+              </div>
+              <form id="inbox-reply-form" style="display: none; gap: 0.5rem; padding: 0.75rem; border-top: 1px solid var(--border-color);">
+                <input type="hidden" id="inbox-active-ticket-id">
+                <input type="text" id="inbox-reply-text" class="chat-text-input" placeholder="Type a message to client..." required>
+                <button type="submit" class="chat-send-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 3: Completed Records Table -->
+        <div class="dashboard-panel-view" id="designer-records-panel">
+          <div class="glass-card">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1.5rem;">Completed Fabrication Records</h3>
+            
+            <div class="table-responsive">
+              <table class="table-custom">
+                <thead>
+                  <tr>
+                    <th>Job ID</th>
+                    <th>Customer</th>
+                    <th>File Name</th>
+                    <th>Material Type</th>
+                    <th>Status</th>
+                    <th>Completed Date</th>
+                  </tr>
+                </thead>
+                <tbody id="designer-records-table-rows">
+                  <!-- Rows populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 4: Mesh Diagnostics -->
+        <div class="dashboard-panel-view" id="designer-diagnostics-panel">
+          <div class="glass-card">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1.5rem;">Mesh Geometry Diagnostics</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 2rem;">Run standard integrity checks on submitted 3D designs.</p>
+            <div class="grid-stats-cards" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 0;">
+              <div class="glass-card" style="padding: 1.25rem; text-align: center; border-color: rgba(255,255,255,0.05); margin-bottom: 0;">
+                <h4 style="color: var(--accent-success); font-size: 1.1rem; margin-bottom: 0.5rem;">Manifold Test</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Verifies standard watertight integrity and non-manifold edges.</p>
+              </div>
+              <div class="glass-card" style="padding: 1.25rem; text-align: center; border-color: rgba(255,255,255,0.05); margin-bottom: 0;">
+                <h4 style="color: var(--accent-secondary); font-size: 1.1rem; margin-bottom: 0.5rem;">Wall Thickness</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Identifies walls thinner than 0.8mm build threshold.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 5: Slicing Tools -->
+        <div class="dashboard-panel-view" id="designer-tools-panel">
+          <div class="glass-card">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1.5rem;">Studio Slicing Tools</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Configure slicing params and export G-code pathways for the fabrication floor.</p>
+            <div class="glass-card" style="padding: 1.5rem; border-color: rgba(255,255,255,0.05); background: rgba(0,0,0,0.2);">
+              <h4 style="font-size: 1rem; margin-bottom: 1rem;">Virtual Build Plate Optimizer</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">Automatically arrange models on the active SLA/SLS build plate to minimize print time and support structures.</p>
+              <button class="btn btn-secondary btn-sm">Launch Slicing Canvas</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 6: Shift Schedule -->
+        <div class="dashboard-panel-view" id="designer-schedule-panel">
+          <div class="glass-card">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1.5rem;">Designer Shift Schedule</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Your current assigned studio shift hours and on-call schedules.</p>
+            <div class="glass-card" style="padding: 1rem; border-color: rgba(255,255,255,0.05);">
+              <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--accent-secondary);">Current Week: Shift A</div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Monday to Friday, 08:00 - 16:00 (On-site Lab Review)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 7: Studio Settings -->
+        <div class="dashboard-panel-view" id="designer-settings-panel">
+          <div class="glass-card" style="max-width: 600px;">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1.5rem;">Studio Settings</h3>
+            <form>
+              <div class="form-group">
+                <label class="form-label">Preferred Slicer Software</label>
+                <select class="form-select">
+                  <option>PrusaSlicer (Custom Config)</option>
+                  <option>Cura Engine</option>
+                  <option>ChituBox Pro (Resins)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Auto-check File Size Limit (MB)</label>
+                <input type="number" class="form-input" value="100">
+              </div>
+              <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Save Preferences</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/icons.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard-designer.js"></script>
+  <script>
+    // Intercept clicks on any buttons or links styled as buttons, and redirect to 404.html
+    document.addEventListener('click', function(e) {
+      const target = e.target.closest('button, .btn, input[type="submit"], input[type="button"]');
+      if (target) {
+        // Exclude UI control buttons (mobile hamburger, theme toggler, modal closing, logout)
+        if (
+          target.textContent.includes('Sign Out') || 
+          target.closest('.sidebar-footer') || 
+          target.closest('.sidebar-trigger') || 
+          target.closest('.theme-toggle-btn') || 
+          target.closest('.modal-close-btn') ||
+          target.closest('.sidebar-close-btn')
+        ) {
+          return;
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = '404.html';
+      }
+    }, true);
+  </script>
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing & Cost Calculator | Stackly 3D</title>
+  <meta name="description"
+    content="Calculate your 3D printing fabrication costs in real-time. Estimate pricing for PLA, ABS, Nylon, Resin, and Metal parts instantly.">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .pricing-hero {
+      padding: 140px 2rem 50px 2rem;
+      background: url('assets/images/hero_pricing.webp') no-repeat center center/cover;
+      position: relative;
+    }
+
+    .pricing-hero h1 {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-hero p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-visual {
+      position: relative;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+      }
+
+      .pricing-hero .hero-content {
+        text-align: center !important;
+      }
+    }
+
+    /* Interactive Calculator Layout */
+    .calc-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .calc-inputs-card {
+      padding: 2.5rem;
+    }
+
+    .calc-results-card {
+      background: var(--grad-card);
+      border-color: var(--accent-primary);
+      position: sticky;
+      top: 100px;
+    }
+
+    .slider-container {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .slider-bar {
+      flex-grow: 1;
+      height: 6px;
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-full);
+      outline: none;
+      appearance: none;
+    }
+
+    .slider-bar::-webkit-slider-thumb {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(238, 85, 54, 0.5);
+      transition: transform 0.1s;
+    }
+
+    .slider-bar::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .slider-val {
+      font-weight: 700;
+      font-size: 1.1rem;
+      min-width: 50px;
+      color: var(--accent-secondary);
+    }
+
+    .result-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem 0;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.5rem;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+    }
+
+    .result-lbl {
+      color: var(--text-secondary);
+    }
+
+    .result-val {
+      font-weight: 600;
+    }
+
+    .total-price-box {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .total-price-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-secondary);
+      margin-bottom: 0.25rem;
+    }
+
+    .total-price-num {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+
+    @media (max-width: 900px) {
+      .calc-container {
+        grid-template-columns: 1fr;
+      }
+
+      .calc-results-card {
+        position: static;
+      }
+    }
+  </style>
+</head>
+
+<body data-theme="dark">
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-logo">
+      <div class="preloader-ring"></div>
+      <div class="preloader-core"></div>
+    </div>
+    <p>STACKLY 3D</p>
+  </div>
+
+  <!-- Header Nav -->
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="brand">
+        <div class="brand-icon" data-icon="printer"></div>
+        <span>Stackly<span
+            style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">3D</span></span>
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle">Pages</a>
+          <div class="dropdown-menu">
+            <a href="about.html" class="dropdown-item">About Us</a>
+            <a href="services.html" class="dropdown-item">Our Services</a>
+            <a href="materials.html" class="dropdown-item">Materials</a>
+            <a href="pricing.html" class="dropdown-item">Pricing</a>
+            <a href="technologies.html" class="dropdown-item">Technologies</a>
+            <a href="industries.html" class="dropdown-item">Industries</a>
+            <a href="blog.html" class="dropdown-item">Blog</a>
+          </div>
+        </div>
+        <a href="gallery.html" class="nav-link">Portfolio</a>
+        <a href="pricing.html" class="nav-link">Shop</a>
+        <a href="contact.html" class="nav-link">Contacts</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle Theme"></button>
+        <a href="login.html" class="btn btn-glass btn-sm">LogIn</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Pricing Hero -->
+  <section class="pricing-hero">
+    <div class="glow-shape glow-1"></div>
+    <div class="glow-shape glow-2"></div>
+    <div class="hero-grid">
+      <div class="hero-content animate-fade-in-up hero-glass-card" style="text-align: left;">
+        <span class="section-subtitle">Real-Time Estimations</span>
+        <h1>Printing Cost Calculator</h1>
+        <p>Configure material bases, thickness variables, and density scales to preview approximate manufacturing quotes
+          instantly.</p>
+      </div>
+      <div class="hero-visual animate-fade-in-up">
+        <div class="interactive-3d-graphic" data-type="pricing-calculator" style="width: 100%; height: 400px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section>
+    <div class="calc-container">
+
+      <!-- Calculator Inputs Form -->
+      <div class="glass-card calc-inputs-card">
+        <h2 style="font-family: var(--font-display); margin-bottom: 2rem; font-size: 1.5rem;">Configure Job
+          Specifications</h2>
+
+        <div class="form-group">
+          <label for="calc-material" class="form-label">Select Material</label>
+          <select id="calc-material" class="form-select">
+            <option value="pla" data-cost="0.15" data-density="1.24">PLA Plus ($0.15/g)</option>
+            <option value="abs" data-cost="0.18" data-density="1.04">ABS Industrial ($0.18/g)</option>
+            <option value="nylon" data-cost="0.35" data-density="1.15">Nylon PA12 SLS ($0.35/g)</option>
+            <option value="resin" data-cost="0.45" data-density="1.18">Tough Resin ($0.45/g)</option>
+            <option value="steel" data-cost="2.50" data-density="8.00">316L Stainless Steel ($2.50/g)</option>
+            <option value="titanium" data-cost="8.50" data-density="4.43">Titanium Alloy ($8.50/g)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="calc-volume" class="form-label">Part Volume (cm³)</label>
+          <div class="slider-container">
+            <input type="range" id="calc-volume" min="5" max="1000" value="50" class="slider-bar">
+            <span id="volume-val" class="slider-val">50 cm³</span>
+          </div>
+          <small style="color: var(--text-muted);">Standard smartphone case is ~40 cm³. Drone arms are ~120 cm³.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="calc-infill" class="form-label">Infill Density (%)</label>
+          <div class="slider-container">
+            <input type="range" id="calc-infill" min="10" max="100" step="10" value="30" class="slider-bar">
+            <span id="infill-val" class="slider-val">30%</span>
+          </div>
+          <small style="color: var(--text-muted);">30% is ideal for prototyping; 80%+ required for structural
+            parts.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="calc-height" class="form-label">Layer Height (Resolution)</label>
+          <select id="calc-height" class="form-select">
+            <option value="200" data-mult="1.0">200 microns (Fast / Standard)</option>
+            <option value="100" data-mult="1.25">100 microns (High Resolution)</option>
+            <option value="50" data-mult="1.6">50 microns (Ultra-Fine Detail)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="calc-qty" class="form-label">Print Quantity</label>
+          <input type="number" id="calc-qty" class="form-input" min="1" max="1000" value="1">
+          <small style="color: var(--text-muted);">Orders above 10 units receive bulk scaling discounts
+            automatically.</small>
+        </div>
+      </div>
+
+      <!-- Live Results Display -->
+      <div class="glass-card calc-results-card">
+        <h2 style="font-family: var(--font-display); margin-bottom: 1.5rem; font-size: 1.5rem;">Cost Breakdowns</h2>
+
+        <div class="result-list">
+          <div class="result-row">
+            <span class="result-lbl">Estimated Weight:</span>
+            <span id="res-weight" class="result-val">0.00 g</span>
+          </div>
+          <div class="result-row">
+            <span class="result-lbl">Base Material Cost:</span>
+            <span id="res-mat-cost" class="result-val">$0.00</span>
+          </div>
+          <div class="result-row">
+            <span class="result-lbl">Printing Time Estimation:</span>
+            <span id="res-time" class="result-val">0h 0m</span>
+          </div>
+          <div class="result-row">
+            <span class="result-lbl">Bulk Savings Discount:</span>
+            <span id="res-discount" class="result-val" style="color: var(--accent-success);">$0.00 (0%)</span>
+          </div>
+        </div>
+
+        <div class="total-price-box">
+          <div class="total-price-label">Estimated Total</div>
+          <div id="res-total" class="total-price-num">$0.00</div>
+        </div>
+
+        <a href="404.html" class="btn btn-primary" style="width: 100%;">
+          Submit to Production Queue
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Bulk Pricing Tiers -->
+  <section class="section-bg-alt">
+    <div class="section-header">
+      <span class="section-subtitle">Scale Manufacturing</span>
+      <h2 class="section-title">Volume Discounts & SLA Tiers</h2>
+    </div>
+
+    <div
+      style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: var(--max-width); margin: 0 auto; gap: 2rem; padding: 0 1rem;">
+      <div class="glass-card">
+        <h3
+          style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--accent-primary);">
+          1 - 9 Parts</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Standard prototyping pricing.
+          Fast queue processing with 2-3 business days turnaround.</p>
+        <span
+          style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); text-transform: uppercase; background: rgba(255, 255, 255, 0.05); padding: 4px 8px; border-radius: 4px;">Base
+          Rate</span>
+      </div>
+
+      <div class="glass-card" style="border-color: var(--accent-primary);">
+        <h3
+          style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--accent-primary);">
+          10 - 49 Parts</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Standard batch production
+          discount. <strong>15% automatic deduction</strong> applied on overall weight rates.</p>
+        <span
+          style="font-size: 0.8rem; font-weight: 700; color: var(--accent-primary); text-transform: uppercase; background: rgba(238, 85, 54, 0.1); padding: 4px 8px; border-radius: 4px;">15%
+          Batch Discount</span>
+      </div>
+
+      <div class="glass-card">
+        <h3
+          style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--accent-primary);">
+          50+ Parts</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">High-volume industrial runs.
+          <strong>30% maximum discount</strong> with custom validation testing logs.</p>
+        <span
+          style="font-size: 0.8rem; font-weight: 700; color: var(--accent-secondary); text-transform: uppercase; background: rgba(229, 177, 13, 0.1); padding: 4px 8px; border-radius: 4px;">30%
+          Industrial Discount</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <div class="brand-icon" data-icon="printer"></div>
+          <span>Stackly<span
+              style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">3D</span></span>
+        </a>
+        <p>Enterprise cloud manufacturing platform. Custom SLA, FDM, SLS print operations globally.</p>
+        <div class="footer-socials">
+          <a href="404.html" class="social-icon" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path
+                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z" />
+            </svg>
+          </a>
+          <a href="404.html" class="social-icon" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="materials.html">Materials</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="pricing.html">Cost Calculator</a></li>
+          <li><a href="technologies.html">Technologies</a></li>
+          <li><a href="industries.html">Industries Served</a></li>
+          <li><a href="gallery.html">Project Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="blog.html">Blog & News</a></li>
+          <li><a href="login.html">Login Portal</a></li>
+          <li><a href="register.html">Register Account</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Stackly 3D Printing Services. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating action elements -->
+  <div class="fab-container">
+    <button class="theme-toggle-btn" aria-label="Toggle Theme"></button>
+    <a href="contact.html" class="fab-btn" aria-label="Support Desk">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/icons.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/three-graphics.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Calculator DOM nodes
+      const materialSelect = document.getElementById('calc-material');
+      const volumeRange = document.getElementById('calc-volume');
+      const volumeVal = document.getElementById('volume-val');
+      const infillRange = document.getElementById('calc-infill');
+      const infillVal = document.getElementById('infill-val');
+      const resolutionSelect = document.getElementById('calc-height');
+      const quantityInput = document.getElementById('calc-qty');
+
+      const resWeight = document.getElementById('res-weight');
+      const resMatCost = document.getElementById('res-mat-cost');
+      const resTime = document.getElementById('res-time');
+      const resDiscount = document.getElementById('res-discount');
+      const resTotal = document.getElementById('res-total');
+
+      function recalculateCosts() {
+        const option = materialSelect.options[materialSelect.selectedIndex];
+        const costPerGram = parseFloat(option.getAttribute('data-cost'));
+        const density = parseFloat(option.getAttribute('data-density'));
+
+        const volume = parseInt(volumeRange.value, 10);
+        volumeVal.innerText = `${volume} cm³`;
+
+        const infill = parseInt(infillRange.value, 10);
+        infillVal.innerText = `${infill}%`;
+
+        const resolutionMult = parseFloat(resolutionSelect.options[resolutionSelect.selectedIndex].getAttribute('data-mult'));
+        const quantity = Math.max(1, parseInt(quantityInput.value, 10) || 1);
+
+        // 1. Calculate Weight: volume * density * infill_fraction
+        // Infill density affects mass (shell thickness makes it ~ infill + 10% mass)
+        const infillMultiplier = (infill / 100) * 0.8 + 0.2; // shell weights base offset
+        const weight = volume * density * infillMultiplier;
+
+        // 2. Base Material Cost
+        const baseMaterialCost = weight * costPerGram;
+
+        // 3. Time estimation (volume / resolution factors)
+        const timeHours = (volume * 0.15) * resolutionMult;
+        const totalMinutes = Math.ceil(timeHours * 60);
+        const hoursPart = Math.floor(totalMinutes / 60);
+        const minutesPart = totalMinutes % 60;
+
+        // Machine wear rate charge ($2.50 per hour)
+        const printMachineCharge = timeHours * 2.50;
+
+        // 4. Base Cost per Part
+        let costPerPart = baseMaterialCost + printMachineCharge;
+
+        // Minimum charge is $15.00
+        if (costPerPart < 15.00) costPerPart = 15.00;
+
+        const subtotal = costPerPart * quantity;
+
+        // 5. Bulk discount rate
+        let discountPercent = 0;
+        if (quantity >= 50) discountPercent = 20;
+        else if (quantity >= 10) discountPercent = 10;
+        else if (quantity >= 5) discountPercent = 5;
+
+        const discountValue = subtotal * (discountPercent / 100);
+        const totalCost = subtotal - discountValue;
+
+        // 6. Push values to results DOM
+        resWeight.innerText = `${weight.toFixed(2)} g`;
+        resMatCost.innerText = `$${(baseMaterialCost * quantity).toFixed(2)}`;
+        resTime.innerText = `${hoursPart}h ${minutesPart}m`;
+        resDiscount.innerText = `-$${discountValue.toFixed(2)} (${discountPercent}%)`;
+        resTotal.innerText = `$${totalCost.toFixed(2)}`;
+      }
+
+      // Add event bindings
+      [materialSelect, volumeRange, infillRange, resolutionSelect, quantityInput].forEach(control => {
+        control.addEventListener('input', recalculateCosts);
+        control.addEventListener('change', recalculateCosts);
+      });
+
+      // Initial load call
+      recalculateCosts();
+    });
+  </script>
+</body>
+
+</html>
