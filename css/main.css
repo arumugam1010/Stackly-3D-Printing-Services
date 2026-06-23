@@ -414,7 +414,7 @@ footer::before {
 }
 
 .glow-1 { top: -100px; right: -50px; background: var(--accent-primary); }
-.glow-2 { bottom: 10%, left: -100px; background: var(--accent-secondary); }
+.glow-2 { bottom: 10%; left: -100px; background: var(--accent-secondary); }
 
 /* Sticky Floating Action Button (FAB) */
 .fab-container {
