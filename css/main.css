@@ -113,8 +113,8 @@ ul {
 
 .preloader-logo {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   margin-bottom: 20px;
 }
 
@@ -133,10 +133,10 @@ ul {
 
 .preloader-core {
   position: absolute;
-  top: 15%;
-  left: 15%;
-  width: 70%;
-  height: 70%;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
   background: url('../assets/images/logo_transparent.webp') no-repeat center center;
   background-size: contain;
   animation: pulse-scale 2s ease-in-out infinite;
