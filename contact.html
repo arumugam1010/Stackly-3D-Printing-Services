@@ -410,12 +410,17 @@
         <form id="contact-form">
           <div class="form-group">
             <label for="contact-name" class="form-label">Full Name</label>
-            <input type="text" id="contact-name" class="form-input" placeholder="Alex Johnson" pattern="^[a-zA-Z\s']+$"
+            <input type="text" id="contact-name" class="form-input" placeholder="Alex Johnson" pattern="^[a-zA-Z\s]+$"
               title="Full Name should only contain letters and spaces." required>
           </div>
           <div class="form-group">
             <label for="contact-email" class="form-label">Email Address</label>
             <input type="email" id="contact-email" class="form-input" placeholder="alex@company.com" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-phone" class="form-label">Mobile Number</label>
+            <input type="tel" id="contact-phone" class="form-input" placeholder="9876543210" pattern="^[0-9]+$"
+              title="Mobile Number should only contain numbers." required>
           </div>
           <div class="form-group">
             <label for="contact-subject" class="form-label">Subject</label>
@@ -471,37 +476,7 @@
           <div class="brand-icon" data-icon="printer"></div>
         </a>
         <p>Enterprise cloud manufacturing platform. Custom SLA, FDM, SLS print operations globally.</p>
-        <div class="footer-socials">
-          <a href="404.html" class="social-icon" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-            </svg>
-          </a>
-          <a href="404.html" class="social-icon" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-            </svg>
-          </a>
-          <a href="404.html" class="social-icon" aria-label="Twitter">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path
-                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z" />
-            </svg>
-          </a>
-          <a href="404.html" class="social-icon" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-              <rect x="2" y="9" width="4" height="12"></rect>
-              <circle cx="4" cy="4" r="2"></circle>
-            </svg>
-          </a>
         </div>
-      </div>
       <div class="footer-links-col">
         <h4>Navigation</h4>
         <ul>
@@ -530,6 +505,29 @@
         </ul>
       </div>
     </div>
+    <div class="footer-middle-row">
+      <div class="footer-socials">
+        <a href="404.html" class="social-icon" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+        <a href="404.html" class="social-icon" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="404.html" class="social-icon" aria-label="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg>
+        </a>
+        <a href="404.html" class="social-icon" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+      </div>
+      <form class="footer-subscribe-form" id="footer-newsletter-form">
+        <div class="subscribe-input-group">
+          <input type="email" id="footer-newsletter-email" placeholder="Enter your email" required class="subscribe-input" aria-label="Subscribe to our newsletter">
+          <button type="submit" class="btn btn-primary subscribe-btn">Subscribe</button>
+        </div>
+      </form>
+    </div>
+
     <div class="footer-bottom">
       <p>&copy; 2026 Stackly 3D Printing Services. All rights reserved.</p>
       <div class="footer-bottom-links">
@@ -552,16 +550,37 @@
     document.addEventListener('DOMContentLoaded', () => {
       // 1. Contact Form Submit validation
       const form = document.getElementById('contact-form');
+      const nameInput = document.getElementById('contact-name');
+      const phoneInput = document.getElementById('contact-phone');
+
+      // Prevent typing or pasting numbers and special characters
+      nameInput.addEventListener('input', () => {
+        nameInput.value = nameInput.value.replace(/[^A-Za-z\s]/g, '');
+      });
+
+      // Prevent typing or pasting non-numeric characters in mobile number
+      phoneInput.addEventListener('input', () => {
+        phoneInput.value = phoneInput.value.replace(/[^0-9]/g, '');
+      });
+
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const nameInput = document.getElementById('contact-name');
         const nameValue = nameInput.value.trim();
+        const phoneValue = phoneInput.value.trim();
 
         // Regex to verify that full name contains only alphabetical characters and spaces
-        const validNameRegex = /^[A-Za-z\s']+$/;
+        const validNameRegex = /^[A-Za-z\s]+$/;
         if (!validNameRegex.test(nameValue)) {
           showNotification('Validation Error', 'Full Name should only contain letters and spaces.', 'error');
           nameInput.focus();
+          return;
+        }
+
+        // Regex to verify that mobile number contains only digits
+        const validPhoneRegex = /^[0-9]+$/;
+        if (!validPhoneRegex.test(phoneValue)) {
+          showNotification('Validation Error', 'Mobile Number should only contain numbers.', 'error');
+          phoneInput.focus();
           return;
         }
 

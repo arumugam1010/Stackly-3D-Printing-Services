@@ -316,7 +316,7 @@ footer::before {
 
 .footer-grid {
   max-width: var(--max-width);
-  margin: 0 auto 4rem auto;
+  margin: 0 auto 2rem auto;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 4rem;
@@ -327,6 +327,81 @@ footer::before {
   margin: 1.5rem 0;
   font-size: 0.95rem;
   max-width: 320px;
+}
+
+.footer-subscribe-form {
+  margin-bottom: 0;
+  max-width: 360px;
+  width: 100%;
+}
+
+.footer-middle-row {
+  max-width: var(--max-width);
+  margin: 0 auto 2rem auto;
+  padding-top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .footer-middle-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.subscribe-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.subscribe-input-group {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.subscribe-input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  outline: none;
+  transition: all var(--transition-fast);
+  min-width: 0;
+}
+
+[data-theme="light"] .subscribe-input {
+  background: rgba(15, 23, 42, 0.02);
+}
+
+.subscribe-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(238, 85, 54, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.subscribe-btn {
+  padding: 0.8rem 1.25rem;
+  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
 }
 
 .footer-socials {
@@ -342,7 +417,7 @@ footer::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
+  color: var(--accent-primary);
   transition: all var(--transition-fast);
 }
 

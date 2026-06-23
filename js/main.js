@@ -482,6 +482,18 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Error parsing user session:', err);
     }
   }
+
+  // 13. Newsletter subscription handler
+  const footerNewsletterForm = document.getElementById('footer-newsletter-form');
+  if (footerNewsletterForm) {
+    footerNewsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = document.getElementById('footer-newsletter-email');
+      if (emailInput && emailInput.value.trim() !== '') {
+        window.location.href = '404.html';
+      }
+    });
+  }
 });
 
 // Global Notification Function (Toast style)

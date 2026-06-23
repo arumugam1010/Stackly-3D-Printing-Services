@@ -141,7 +141,7 @@
   appearance: none;
   width: 18px;
   height: 18px;
-  border: 1.5px solid var(--border-color);
+  border: 1.5px solid var(--accent-primary);
   border-radius: 4px;
   outline: none;
   cursor: pointer;
@@ -156,8 +156,8 @@
   height: 10px;
   transform: scale(0);
   transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em var(--text-primary);
-  background-color: CanvasText;
+  box-shadow: inset 1em 1em #fff;
+  background-color: #fff;
   transform-origin: center;
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
