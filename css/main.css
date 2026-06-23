@@ -137,7 +137,7 @@ ul {
   left: 15%;
   width: 70%;
   height: 70%;
-  background: url('../assets/images/logo_transparent.png') no-repeat center center;
+  background: url('../assets/images/logo_transparent.webp') no-repeat center center;
   background-size: contain;
   animation: pulse-scale 2s ease-in-out infinite;
 }
@@ -212,9 +212,9 @@ header.sticky {
 }
 
 .brand-icon {
-  width: 32px;
-  height: 32px;
-  animation: logo-float 4s ease-in-out infinite;
+  width: 150px;
+  height: 44px;
+  /* animation: logo-float 4s ease-in-out infinite; */
 }
 
 @keyframes logo-float {
@@ -548,7 +548,8 @@ body.menu-active > *:not(header):not(.toast-container) {
 @media (min-width: 769px) {
   .mobile-menu-header,
   .mobile-menu-search,
-  .mobile-menu-contact {
+  .mobile-menu-contact,
+  .mobile-menu-auth {
     display: none !important;
   }
 }
@@ -955,6 +956,11 @@ body.menu-active > *:not(header):not(.toast-container) {
   padding-top: 180px !important;
 }
 
+/* Hide mobile sidebar auth buttons on desktop by default */
+.mobile-menu-auth {
+  display: none !important;
+}
+
 @media (max-width: 768px) {
   .about-hero, 
   .services-hero, 
@@ -966,5 +972,30 @@ body.menu-active > *:not(header):not(.toast-container) {
   .contact-hero, 
   .gallery-hero {
     padding-top: 130px !important;
+  }
+
+  /* Hide top navbar buttons on mobile to make room for larger logo and menu */
+  .nav-actions a.btn {
+    display: none !important;
+  }
+
+  /* Style mobile sidebar auth buttons */
+  .mobile-menu-auth {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .mobile-menu-auth .btn {
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    height: auto;
   }
 }

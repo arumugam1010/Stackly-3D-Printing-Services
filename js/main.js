@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         brandHtml = `
           <a href="index.html" class="brand">
             <div class="brand-icon" data-icon="printer"></div>
-            <span>Stackly<span style="color: var(--accent-primary);">3D</span></span>
           </a>
         `;
       }
@@ -103,6 +102,26 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       const headerDiv = document.getElementById('mobile-menu-header');
       navMenu.insertBefore(searchDiv, headerDiv.nextSibling);
+    }
+
+    // 4.25 Injected Auth Buttons for Mobile Sidebar
+    if (!document.getElementById('mobile-menu-auth')) {
+      const authDiv = document.createElement('div');
+      authDiv.id = 'mobile-menu-auth';
+      authDiv.className = 'mobile-menu-auth';
+      authDiv.style.display = 'none'; // Default hidden inline, overridden by media query in CSS for mobile view
+      
+      const loginBtn = document.querySelector('.nav-actions a[href="login.html"], .nav-actions a[href="dashboard-customer.html"], .nav-actions a[href="dashboard-designer.html"], .nav-actions a[href="dashboard-admin.html"]');
+      const registerBtn = document.querySelector('.nav-actions a[href="register.html"]');
+      
+      let loginHtml = loginBtn ? loginBtn.cloneNode(true).outerHTML : '<a href="login.html" class="btn btn-glass btn-sm">LogIn</a>';
+      let registerHtml = (registerBtn && registerBtn.style.display !== 'none') ? registerBtn.cloneNode(true).outerHTML : '<a href="register.html" class="btn btn-primary btn-sm">Register</a>';
+      
+      authDiv.innerHTML = `
+        ${loginHtml}
+        ${registerHtml}
+      `;
+      navMenu.appendChild(authDiv);
     }
 
     // 4.3 Injected Contact Info
