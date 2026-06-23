@@ -16,8 +16,10 @@
   flex-direction: column;
   padding: 1.5rem;
   height: 100vh;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: var(--sidebar-width);
   z-index: 950;
   transition: transform var(--transition-normal);
 }
@@ -85,6 +87,7 @@
 
 /* Content Area Wrapper */
 .dashboard-main {
+  grid-column: 2;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -271,6 +274,10 @@
 @media (max-width: 768px) {
   .dashboard-layout {
     grid-template-columns: 1fr;
+  }
+  
+  .dashboard-main {
+    grid-column: 1;
   }
   
   .dashboard-sidebar {
