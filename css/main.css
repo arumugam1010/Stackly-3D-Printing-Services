@@ -643,6 +643,7 @@ body.menu-active > *:not(header):not(.toast-container) {
     top: 0;
     left: -320px;
     width: 320px;
+    max-width: 100vw;
     height: 100vh;
     background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     flex-direction: column;
@@ -682,7 +683,7 @@ body.menu-active > *:not(header):not(.toast-container) {
   .mobile-menu-close {
     background: transparent;
     border: none;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-primary);
     cursor: pointer;
     display: flex;
     align-items: center;
