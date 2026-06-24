@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us | Stackly 3D - Enterprise Additive Manufacturing</title>
-  <meta name="description" content="Discover Stackly 3D's history, mission, global manufacturing network, and the team driving additive engineering forwards.">
+  <meta name="description"
+    content="Discover Stackly 3D's history, mission, global manufacturing network, and the team driving additive engineering forwards.">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/components.css">
@@ -14,18 +16,21 @@
       background: url('assets/images/hero_about.webp') no-repeat center center/cover;
       position: relative;
     }
+
     .about-hero h1 {
       font-family: var(--font-display);
       font-size: 3rem;
       font-weight: 800;
       margin-bottom: 1.5rem;
     }
+
     .about-hero p {
       font-size: 1.15rem;
       color: var(--text-secondary);
       max-width: 700px;
       margin: 0 auto;
     }
+
     .hero-grid {
       max-width: var(--max-width);
       margin: 0 auto;
@@ -35,9 +40,11 @@
       align-items: center;
       width: 100%;
     }
+
     .hero-grid .hero-glass-card {
       margin: 0;
     }
+
     .hero-visual {
       position: relative;
       height: 400px;
@@ -45,23 +52,30 @@
       justify-content: center;
       align-items: center;
     }
+
     @media (max-width: 1024px) {
       .hero-grid {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 3rem;
       }
+
       .hero-grid .hero-glass-card {
         margin: 0 auto;
       }
+
       .about-hero .hero-content {
         text-align: center !important;
       }
     }
+
     .timeline-container {
-      max-width: 800px;
+      max-width: var(--max-width);
       margin: 0 auto;
+      width: 100%;
+      padding: 0 1rem;
     }
+
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -69,9 +83,11 @@
       max-width: var(--max-width);
       margin: 0 auto;
     }
+
     .team-card {
       text-align: center;
     }
+
     .team-avatar {
       width: 100px;
       height: 100px;
@@ -85,16 +101,19 @@
       margin: 0 auto 1.5rem auto;
       transition: transform var(--transition-normal);
     }
+
     .team-card:hover .team-avatar {
       transform: scale(1.1) rotate(15deg);
       box-shadow: 0 0 20px rgba(238, 85, 54, 0.4);
     }
+
     .team-name {
       font-family: var(--font-display);
       font-size: 1.2rem;
       font-weight: 600;
       color: var(--text-primary);
     }
+
     .team-role {
       font-size: 0.85rem;
       color: var(--accent-secondary);
@@ -103,12 +122,257 @@
       letter-spacing: 0.05em;
       margin-bottom: 0.5rem;
     }
+
     .team-desc {
       font-size: 0.9rem;
       color: var(--text-secondary);
     }
+
+    /* About Introduction Section Styles */
+    .about-intro-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-intro-text h2 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .about-intro-text p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-intro-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .intro-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .intro-feature-icon {
+      color: var(--accent-primary);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .intro-feature-title {
+      font-weight: 700;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    .intro-feature-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .about-intro-visual {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--glass-shadow);
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      height: 400px;
+    }
+
+    .about-intro-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .about-intro-visual:hover img {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 1024px) {
+      .about-intro-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .about-intro-visual {
+        height: 300px;
+      }
+    }
+
+    .timeline-desktop-layout {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* Wavy Curvy Horizontal Timeline Styles */
+    .timeline-horizontal-desktop {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      margin: 1rem 0;
+      display: block;
+    }
+    
+    .timeline-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    #timeline-path-active {
+      transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .timeline-node {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform var(--transition-fast);
+    }
+    
+    .node-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--bg-primary);
+      border: 4px solid var(--border-color);
+      transition: all var(--transition-fast);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+    
+    .node-dot::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      transition: transform var(--transition-fast);
+    }
+    
+    .node-year {
+      margin-top: 0.5rem;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+    }
+    
+    .timeline-node:hover .node-dot,
+    .timeline-node.active .node-dot {
+      border-color: var(--accent-primary);
+      transform: scale(1.25);
+      box-shadow: 0 0 20px rgba(238, 85, 54, 0.5);
+    }
+    
+    .timeline-node:hover .node-dot::after,
+    .timeline-node.active .node-dot::after {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .timeline-node:hover .node-year,
+    .timeline-node.active .node-year {
+      color: var(--text-primary);
+    }
+    
+    .timeline-details-container {
+      position: relative;
+      width: 100%;
+      height: 180px;
+    }
+    
+    .timeline-details-container .timeline-card {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%) translateX(20px);
+      width: 100%;
+      padding: 1.5rem;
+      z-index: 5;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-normal);
+      pointer-events: none;
+    }
+    
+    .timeline-details-container .timeline-card.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(-50%) translateX(0);
+      pointer-events: auto;
+      border-color: var(--accent-primary);
+      box-shadow: 0 8px 32px 0 rgba(238, 85, 54, 0.12);
+    }
+    
+    .timeline-details-container .timeline-card .timeline-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent-secondary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .timeline-details-container .timeline-card .timeline-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    /* Toggle desktop horizontal and mobile vertical timelines */
+    .timeline-vertical-mobile {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .timeline-desktop-layout {
+        display: none;
+      }
+      .timeline-vertical-mobile {
+        display: block;
+      }
+      .timeline-container {
+        max-width: 600px;
+      }
+    }
   </style>
 </head>
+
 <body data-theme="light">
 
   <!-- Preloader -->
@@ -164,7 +428,8 @@
       <div class="hero-content animate-fade-in-up hero-glass-card" style="text-align: left;">
         <span class="section-subtitle">Our Vision</span>
         <h1>Decentralizing Additive Manufacturing</h1>
-        <p>Stackly 3D was founded with a singular purpose: to link high-precision industrial additive printers with global development pipelines via slick, browser-native CAD submission suites.</p>
+        <p>Stackly 3D was founded with a singular purpose: to link high-precision industrial additive printers with
+          global development pipelines via slick, browser-native CAD submission suites.</p>
       </div>
       <div class="hero-visual animate-fade-in-up">
         <div class="interactive-3d-graphic" data-type="about-globe" style="width: 100%; height: 400px;"></div>
@@ -172,41 +437,149 @@
     </div>
   </section>
 
+  <!-- About Introduction Section -->
+  <section class="about-intro-section">
+    <div class="about-intro-grid">
+      <div class="about-intro-text">
+        <span class="section-subtitle">Who We Are</span>
+        <h2>Empowering Engineers & Innovators Globally</h2>
+        <p>Stackly 3D simplifies industrial additive manufacturing. We bridge the gap between complex CAD designs and
+          physical high-precision parts by offering an enterprise-grade cloud fabrication platform.</p>
+        <p>Our platform automates geometric mesh checkouts, provides immediate wall-thickness analysis, and dispatches
+          manufacturing assets directly to audited local and international production nodes.</p>
+
+        <div class="about-intro-features">
+          <div class="intro-feature-item">
+            <svg class="intro-feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <div>
+              <span class="intro-feature-title">Cloud Slicing Engines</span>
+              <span class="intro-feature-desc">Automated STL mesh analysis and solid wall thickness repairs in the
+                browser.</span>
+            </div>
+          </div>
+          <div class="intro-feature-item">
+            <svg class="intro-feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <div>
+              <span class="intro-feature-title">Global Sintering Farm</span>
+              <span class="intro-feature-desc">Direct access to metal sintering (Titanium) and SLS Nylon printers
+                globally.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-intro-visual">
+        <img src="assets/images/printer_nozzle.webp" alt="Industrial 3D Printing Nozzle">
+      </div>
+    </div>
+  </section>
+
   <!-- History Timeline -->
-  <section style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
-    <div class="section-header">
+  <section style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 4rem 2rem;">
+    <div class="section-header" style="margin-bottom: 3rem;">
       <span class="section-subtitle">Our Journey</span>
       <h2 class="section-title">Milestones & History</h2>
     </div>
     
     <div class="timeline-container">
-      <div class="timeline">
-        <div class="timeline-item active">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
+      <!-- Desktop side-by-side layout -->
+      <div class="timeline-desktop-layout">
+        <!-- 1. Horizontal Desktop Curvy Wavy Timeline (Left Column) -->
+        <div class="timeline-horizontal-desktop">
+          <svg viewBox="0 0 1000 120" class="timeline-svg" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="timeline-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="var(--accent-primary)" />
+                <stop offset="100%" stop-color="var(--accent-secondary)" />
+              </linearGradient>
+            </defs>
+            <!-- Winding wavy background path (curving spline) -->
+            <path d="M 100 60 C 225 60, 225 100, 350 100 C 475 100, 475 20, 600 20 C 725 20, 725 60, 900 60" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="4" stroke-linecap="round" id="timeline-path-bg"/>
+            <!-- Active winding wavy path that animates with stroke-dashoffset -->
+            <path d="M 100 60 C 225 60, 225 100, 350 100 C 475 100, 475 20, 600 20 C 725 20, 725 60, 900 60" fill="none" stroke="url(#timeline-grad)" stroke-width="5" stroke-linecap="round" id="timeline-path-active"/>
+          </svg>
+
+          <!-- Winding Nodes placed at peaks/troughs -->
+          <div class="timeline-node" style="left: 10%; top: 50%;" data-index="0">
+            <div class="node-dot"></div>
+            <div class="node-year">2020</div>
+          </div>
+          <div class="timeline-node" style="left: 35%; top: 83.3%;" data-index="1">
+            <div class="node-dot"></div>
+            <div class="node-year">2022</div>
+          </div>
+          <div class="timeline-node" style="left: 60%; top: 16.6%;" data-index="2">
+            <div class="node-dot"></div>
+            <div class="node-year">2024</div>
+          </div>
+          <div class="timeline-node" style="left: 90%; top: 50%;" data-index="3">
+            <div class="node-dot"></div>
+            <div class="node-year">2026</div>
+          </div>
+        </div>
+
+        <!-- Details Container (Right Column) -->
+        <div class="timeline-details-container">
+          <div class="timeline-card glass-card" data-index="0">
+            <h3 class="timeline-title">2020 - Garage Origins</h3>
+            <p class="timeline-desc">Created with two FDM printers and a custom CAD rendering client. Integrated immediate prototyping feedback tools for engineers.</p>
+          </div>
+          <div class="timeline-card glass-card" data-index="1">
+            <h3 class="timeline-title">2022 - High-Speed SLS Slicers</h3>
+            <p class="timeline-desc">Constructed automated polygon-slicing clusters to verify mesh wall thicknesses in real-time, eliminating physical print failure overheads.</p>
+          </div>
+          <div class="timeline-card glass-card" data-index="2">
+            <h3 class="timeline-title">2024 - DMLS Metal Printing Launch</h3>
+            <p class="timeline-desc">Added metal sintering (Grade 5 Titanium & Aerospace Aluminum alloys) to support stress-critical aerospace and prosthetic print actions.</p>
+          </div>
+          <div class="timeline-card glass-card" data-index="3">
             <h3 class="timeline-title">2026 - Global Additive Cloud</h3>
             <p class="timeline-desc">Fitted smart APIs linking customers, automated validator checkers, and CNC operations into a single continuous delivery manufacturing dashboard.</p>
           </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3 class="timeline-title">2024 - DMLS Metal Printing Launch</h3>
-            <p class="timeline-desc">Added metal sintering (Grade 5 Titanium & Aerospace Aluminum alloys) to support stress-critical aerospace and prosthetic print actions.</p>
+      </div>
+
+      <!-- 2. Fallback Vertical Timeline for Mobile (under 768px) -->
+      <div class="timeline-vertical-mobile">
+        <div class="timeline">
+          <div class="timeline-item active">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">2026 - Global Additive Cloud</h3>
+              <p class="timeline-desc">Fitted smart APIs linking customers, automated validator checkers, and CNC
+                operations into a single continuous delivery manufacturing dashboard.</p>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3 class="timeline-title">2022 - High-Speed SLS Slicers</h3>
-            <p class="timeline-desc">Constructed automated polygon-slicing clusters to verify mesh wall thicknesses in real-time, eliminating physical print failure overheads.</p>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">2024 - DMLS Metal Printing Launch</h3>
+              <p class="timeline-desc">Added metal sintering (Grade 5 Titanium & Aerospace Aluminum alloys) to support
+                stress-critical aerospace and prosthetic print actions.</p>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3 class="timeline-title">2020 - Garage Origins</h3>
-            <p class="timeline-desc">Created with two FDM printers and a custom CAD rendering client. Integrated immediate prototyping feedback tools for engineers.</p>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">2022 - High-Speed SLS Slicers</h3>
+              <p class="timeline-desc">Constructed automated polygon-slicing clusters to verify mesh wall thicknesses in
+                real-time, eliminating physical print failure overheads.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">2020 - Garage Origins</h3>
+              <p class="timeline-desc">Created with two FDM printers and a custom CAD rendering client. Integrated
+                immediate prototyping feedback tools for engineers.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -219,53 +592,75 @@
       <span class="section-subtitle">Leadership</span>
       <h2 class="section-title">Our Additive Specialists</h2>
     </div>
-    
+
     <div class="team-grid">
       <div class="glass-card team-card">
         <div class="team-avatar">👨‍💻</div>
         <h3 class="team-name">Dr. Marcus Vance</h3>
         <div class="team-role">Head 3D Designer</div>
-        <p class="team-desc">Former aerospace CAD designer. Specializes in structural volume slicing and mesh structural integrity diagnostics.</p>
+        <p class="team-desc">Former aerospace CAD designer. Specializes in structural volume slicing and mesh structural
+          integrity diagnostics.</p>
       </div>
       <div class="glass-card team-card">
         <div class="team-avatar">👩‍🔬</div>
         <h3 class="team-name">Sarah Croft</h3>
         <div class="team-role">Chief Administrator</div>
-        <p class="team-desc">Manages automated production timelines, client SLA workflows, and vendor material pricing distributions.</p>
+        <p class="team-desc">Manages automated production timelines, client SLA workflows, and vendor material pricing
+          distributions.</p>
       </div>
       <div class="glass-card team-card">
         <div class="team-avatar">👨‍🔧</div>
         <h3 class="team-name">David Kovic</h3>
         <div class="team-role">Lead Print Operator</div>
-        <p class="team-desc">Expert in SLS powder-bed operations and high-temp PEEK extrusion metrics. Ensures high precision prints.</p>
+        <p class="team-desc">Expert in SLS powder-bed operations and high-temp PEEK extrusion metrics. Ensures high
+          precision prints.</p>
       </div>
     </div>
   </section>
 
   <!-- Print Farm Facilities Section (NEW) -->
-  <section style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+  <section
+    style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
     <div class="section-header">
       <span class="section-subtitle">Our Infrastructure</span>
       <h2 class="section-title">Global Print Facilities</h2>
     </div>
-    
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: var(--max-width); margin: 0 auto; gap: 2rem;">
+
+    <div
+      style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: var(--max-width); margin: 0 auto; gap: 2rem;">
       <div class="glass-card">
-        <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--accent-secondary);">Silicon Valley Hub</h3>
-        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Our primary R&D facility focusing on high-performance polymers (PEEK, carbon-PLA) and biocompatible resins. Hosts 45 industrial printers.</p>
-        <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); text-transform: uppercase; background: rgba(6, 182, 212, 0.1); padding: 4px 8px; border-radius: 4px;">FDM & SLA Specialists</span>
+        <h3
+          style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--accent-secondary);">
+          Silicon Valley Hub</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Our primary R&D facility
+          focusing on high-performance polymers (PEEK, carbon-PLA) and biocompatible resins. Hosts 45 industrial
+          printers.</p>
+        <span
+          style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); text-transform: uppercase; background: rgba(6, 182, 212, 0.1); padding: 4px 8px; border-radius: 4px;">FDM
+          & SLA Specialists</span>
       </div>
 
       <div class="glass-card">
-        <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--accent-secondary);">Munich CNC & Metal Lab</h3>
-        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Dedicated to Direct Metal Laser Sintering (DMLS) and hybrid CNC machining. Sinter Titanium (Grade 5) and Stainless Steel 316L parts.</p>
-        <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); text-transform: uppercase; background: rgba(6, 182, 212, 0.1); padding: 4px 8px; border-radius: 4px;">DMLS Sintering Farm</span>
+        <h3
+          style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--accent-secondary);">
+          Munich CNC & Metal Lab</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Dedicated to Direct Metal
+          Laser Sintering (DMLS) and hybrid CNC machining. Sinter Titanium (Grade 5) and Stainless Steel 316L parts.</p>
+        <span
+          style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); text-transform: uppercase; background: rgba(6, 182, 212, 0.1); padding: 4px 8px; border-radius: 4px;">DMLS
+          Sintering Farm</span>
       </div>
 
       <div class="glass-card">
-        <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--accent-secondary);">Singapore Rapid Batching</h3>
-        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Serving Asia-Pacific with high-volume SLS Nylon printing networks. Offers post-processing options like vapor smoothing and custom dye matching.</p>
-        <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); text-transform: uppercase; background: rgba(6, 182, 212, 0.1); padding: 4px 8px; border-radius: 4px;">SLS & Slicing Nodes</span>
+        <h3
+          style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--accent-secondary);">
+          Singapore Rapid Batching</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Serving Asia-Pacific with
+          high-volume SLS Nylon printing networks. Offers post-processing options like vapor smoothing and custom dye
+          matching.</p>
+        <span
+          style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); text-transform: uppercase; background: rgba(6, 182, 212, 0.1); padding: 4px 8px; border-radius: 4px;">SLS
+          & Slicing Nodes</span>
       </div>
     </div>
   </section>
@@ -276,24 +671,33 @@
       <span class="section-subtitle">Quality Assurance</span>
       <h2 class="section-title">Standards & Certifications</h2>
     </div>
-    
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); max-width: var(--max-width); margin: 0 auto; gap: 1.5rem; text-align: center;">
+
+    <div
+      style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); max-width: var(--max-width); margin: 0 auto; gap: 1.5rem; text-align: center;">
       <div class="glass-card" style="padding: 1.5rem;">
-        <span style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--accent-primary); display: block; margin-bottom: 0.5rem;">ISO 9001</span>
+        <span
+          style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--accent-primary); display: block; margin-bottom: 0.5rem;">ISO
+          9001</span>
         <strong style="display: block; margin-bottom: 0.5rem;">Quality Management</strong>
-        <p style="font-size: 0.8rem; color: var(--text-secondary);">Enforces structured workflows, traceability, and material verify systems across all print facilities.</p>
+        <p style="font-size: 0.8rem; color: var(--text-secondary);">Enforces structured workflows, traceability, and
+          material verify systems across all print facilities.</p>
       </div>
 
       <div class="glass-card" style="padding: 1.5rem;">
-        <span style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--accent-primary); display: block; margin-bottom: 0.5rem;">AS9100D</span>
+        <span
+          style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--accent-primary); display: block; margin-bottom: 0.5rem;">AS9100D</span>
         <strong style="display: block; margin-bottom: 0.5rem;">Aerospace Sintering</strong>
-        <p style="font-size: 0.8rem; color: var(--text-secondary);">Meets flight-safety limits for engine manifolds, brackets, and structural casings printed in Titanium.</p>
+        <p style="font-size: 0.8rem; color: var(--text-secondary);">Meets flight-safety limits for engine manifolds,
+          brackets, and structural casings printed in Titanium.</p>
       </div>
 
       <div class="glass-card" style="padding: 1.5rem;">
-        <span style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--accent-primary); display: block; margin-bottom: 0.5rem;">ISO 13485</span>
+        <span
+          style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--accent-primary); display: block; margin-bottom: 0.5rem;">ISO
+          13485</span>
         <strong style="display: block; margin-bottom: 0.5rem;">Clinical Implants</strong>
-        <p style="font-size: 0.8rem; color: var(--text-secondary);">Validates sterilized SLA resin and DMLS operations for prosthetic bone brackets and surgical guides.</p>
+        <p style="font-size: 0.8rem; color: var(--text-secondary);">Validates sterilized SLA resin and DMLS operations
+          for prosthetic bone brackets and surgical guides.</p>
       </div>
     </div>
   </section>
@@ -306,7 +710,7 @@
           <div class="brand-icon" data-icon="printer"></div>
         </a>
         <p>Enterprise cloud manufacturing platform. Custom SLA, FDM, SLS print operations globally.</p>
-        </div>
+      </div>
       <div class="footer-links-col">
         <h4>Navigation</h4>
         <ul>
@@ -338,21 +742,38 @@
     <div class="footer-middle-row">
       <div class="footer-socials">
         <a href="404.html" class="social-icon" aria-label="Facebook">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+          </svg>
         </a>
         <a href="404.html" class="social-icon" aria-label="Instagram">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
         </a>
         <a href="404.html" class="social-icon" aria-label="Twitter">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path
+              d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z" />
+          </svg>
         </a>
         <a href="404.html" class="social-icon" aria-label="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
         </a>
       </div>
       <form class="footer-subscribe-form" id="footer-newsletter-form">
         <div class="subscribe-input-group">
-          <input type="email" id="footer-newsletter-email" placeholder="Enter your email" required class="subscribe-input" aria-label="Subscribe to our newsletter">
+          <input type="email" id="footer-newsletter-email" placeholder="Enter your email" required
+            class="subscribe-input" aria-label="Subscribe to our newsletter">
           <button type="submit" class="btn btn-primary subscribe-btn">Subscribe</button>
         </div>
       </form>
@@ -371,7 +792,10 @@
   <div class="fab-container">
     <button class="theme-toggle-btn" aria-label="Toggle Theme"></button>
     <a href="contact.html" class="fab-btn" aria-label="Support Desk">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
     </a>
   </div>
 
@@ -379,5 +803,53 @@
   <script src="js/icons.js"></script>
   <script src="js/main.js"></script>
   <script src="js/three-graphics.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const nodes = document.querySelectorAll('.timeline-node');
+      const cards = document.querySelectorAll('.timeline-card');
+      const activePath = document.getElementById('timeline-path-active');
+
+      if (activePath) {
+        let pathLength = 0;
+        try {
+          pathLength = activePath.getTotalLength();
+        } catch (e) {
+          pathLength = 880;
+        }
+
+        activePath.style.strokeDasharray = pathLength;
+        activePath.style.strokeDashoffset = pathLength;
+
+        const offsets = [
+          pathLength,
+          pathLength * 0.69,
+          pathLength * 0.38,
+          0
+        ];
+
+        function activateIndex(index) {
+          nodes.forEach((n, idx) => {
+            n.classList.toggle('active', idx === index);
+          });
+          cards.forEach((c, idx) => {
+            c.classList.toggle('active', idx === index);
+          });
+
+          activePath.style.strokeDashoffset = offsets[index];
+        }
+
+        nodes.forEach((node, idx) => {
+          node.addEventListener('mouseenter', () => activateIndex(idx));
+        });
+
+        cards.forEach((card, idx) => {
+          card.addEventListener('mouseenter', () => activateIndex(idx));
+        });
+
+        setTimeout(() => activateIndex(3), 100);
+      }
+    });
+  </script>
 </body>
+
 </html>
