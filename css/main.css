@@ -10,6 +10,10 @@
   -webkit-font-smoothing: antialiased;
 }
 
+img {
+  pointer-events: none;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -493,6 +497,7 @@ footer::before {
 
 /* Sticky Floating Action Button (FAB) */
 .fab-container {
+  display: none !important; /* Hidden by User Request */
   position: fixed;
   bottom: 2rem;
   right: 2rem;
